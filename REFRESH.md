@@ -9,6 +9,16 @@ This site is updated each morning by the Daily Deals Brief scheduled task, right
 3. Run `python3 scripts/build.py`. It regenerates `index.html`, `archive/` and `feed.json`, and deletes briefs older than 30 days.
 4. Commit everything (`git add -A`) with the message `Deals for <display date>` and push to `main`. GitHub Pages publishes from `main`.
 
+## Page layout
+
+- **Top 3 deals**: the focus of the page (`top`, max 3).
+- **One tab per category**: the best deals in each category (`categories`, max 3 deals each). A top-3 deal is **also** listed under its own category tab. Categories with no deals still get a tab that says nothing met the bar; leave them out of the JSON or give them empty `deals`.
+- **Previously posted**: set `previously_posted` on any deal that appeared in an earlier brief, using the display date it was **first** posted (for example `"Sat 31 Oct 2026"`). Use `status` for what changed: `"price unchanged"`, `"price dropped – was $X"`, or `"new"`. The build also labels exact item-name repeats from the archive if you miss one.
+
+## Category names (use exactly; this is the tab order)
+
+TVs · Air fryers · Coffee machines · Cordless stick vacuums · Robotic pool cleaners · Lawn mowers · Robot vacuums · Heat pump dryers · Slow cookers · Kettle and toaster packs · Large rugs · Outdoor dining settings · Kitchenware
+
 ## Privacy rules (public site)
 
 - No names, email addresses, street or suburb, postcode, or other personal details. Say "Adelaide" for location.
@@ -24,9 +34,15 @@ This site is updated each morning by the Daily Deals Brief scheduled task, right
   "display_date": "Fri 6 Nov 2026",
   "summary": "One or two sentences.",
   "top": [ DEAL, DEAL, DEAL ],
-  "categories": [ { "name": "Lawn mowers", "deals": [ DEAL ], "notes": [ "short bullet" ] } ],
-  "notes": [ { "label": "Missed", "text": "..." } ],
-  "nothing_today": [ "Air fryers", "Rugs" ],
+  "categories": [
+    {
+      "name": "Coffee machines",
+      "deals": [ DEAL ],
+      "notes_title": "Other Barista Express prices",
+      "notes": [ "short bullet", "Missed: ... (sold out)" ]
+    }
+  ],
+  "notes": [ { "label": "Heads up", "text": "anything that fits no category" } ],
   "sales": [ { "text": "...", "links": [ { "label": "OzBargain", "url": "https://..." } ] } ]
 }
 ```
@@ -41,7 +57,8 @@ DEAL:
   "price": "$999",
   "usual": "$1,299",
   "saving": "23% off",
-  "status": "new | still on | price dropped – was $X yesterday",
+  "status": "new | price unchanged | price dropped – was $X",
+  "previously_posted": "Sat 31 Oct 2026",
   "stretch": false,
   "why": "Why it's good, caveats.",
   "ends": "15 Nov",
@@ -49,4 +66,4 @@ DEAL:
 }
 ```
 
-`category` is only needed for top deals. Empty strings are fine for unknown fields. If nothing meets the bar, use `"top": []` and say so in `summary`.
+`category` is needed for top deals only. `previously_posted` is `""` for new deals. Empty strings are fine for unknown fields. If nothing meets the bar, use `"top": []` and say so in `summary`.
