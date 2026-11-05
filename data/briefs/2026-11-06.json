@@ -1,0 +1,93 @@
+{
+  "date": "2026-11-06",
+  "display_date": "Fri 6 Nov 2026",
+  "summary": "One new deal today: a cashback stack brings the Breville Barista Express to about $490. Yesterday's robot vacuum and TV deals are still listed.",
+  "top": [
+    {
+      "item": "Roborock Qrevo Curv 2 Flow (robot vacuum + mop, self-empty dock)",
+      "category": "Robot vacuums",
+      "retailer": "Roborock AU",
+      "price": "$999",
+      "usual": "$1,799",
+      "saving": "About 22% below the best street price",
+      "status": "still on",
+      "why": "Covers both vacuuming and mopping, and the dock empties itself.",
+      "ends": "",
+      "links": [{"label": "Roborock AU", "url": "https://roborockstore.com.au/products/qrevo-curv-2-flow"}]
+    },
+    {
+      "item": "Breville Barista Express (BES870)",
+      "category": "Coffee machines",
+      "retailer": "Woolworths Everyday Market",
+      "price": "~$490 after cashback",
+      "usual": "$585–$599",
+      "saving": "About 17% below usual",
+      "status": "new",
+      "why": "Listed at $599. TopCashback pays 20% back on orders over $150.01 with no cap, calculated on the pre-GST price (about $545), so roughly $109 back. Built-in grinder and a proper steam wand. Cashback arrives later and only pays if your click is tracked; check the listing is the BES870 sold by Woolworths.",
+      "ends": "No end date posted",
+      "links": [
+        {"label": "TopCashback offer", "url": "https://www.ozbargain.com.au/node/981670"},
+        {"label": "Deal thread", "url": "https://www.ozbargain.com.au/node/981537"}
+      ]
+    },
+    {
+      "item": "Hisense 55\" Q6SAU QLED 4K (LED panel)",
+      "category": "TVs",
+      "retailer": "Costco",
+      "price": "$549.99 delivered",
+      "usual": "",
+      "saving": "About 25% below other retailers",
+      "status": "still on",
+      "why": "Costco membership required. Product page may now show out of stock, so check first. Note it's a 60Hz panel.",
+      "ends": "15 Nov",
+      "links": [
+        {"label": "OzBargain", "url": "https://www.ozbargain.com.au/node/981001"},
+        {"label": "Costco", "url": "https://www.costco.com.au/p/2026052"}
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "name": "Lawn mowers",
+      "deals": [
+        {
+          "item": "Ozito PXC 36V (2×18V) 41cm brushless mower kit",
+          "retailer": "Bunnings",
+          "price": "$229",
+          "usual": "",
+          "saving": "",
+          "status": "still on",
+          "why": "Kit includes 2 batteries and a charger; the batteries fit all Ozito PXC 18V tools. Cuts 41cm, just over the 33–40cm target. Stock is patchy (item number 1108457).",
+          "ends": "",
+          "links": [
+            {"label": "OzBargain", "url": "https://www.ozbargain.com.au/node/976617"},
+            {"label": "Stock checker", "url": "https://bunnings.youinstock.com.au/search/1108457/"}
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "name": "Coffee: other Barista Express prices",
+      "deals": [],
+      "notes": [
+        "Breville eBay store: $549 with code SAVINGS (needs eBay Plus).",
+        "Costco: $549 for the stainless BES875, members only, until 8 Nov.",
+        "Amazon AU: $585.",
+        "The Good Guys will price-beat to $578.",
+        "Breville eBay store: refurbished units have been seen at $339."
+      ]
+    }
+  ],
+  "notes": [
+    {"label": "Missed", "text": "The Samsung Bespoke Jet Ultra stick vacuum was $749 on eBay but is now sold out at eBay, Myer and Samsung. Commenters on the deal expect it to come back."}
+  ],
+  "nothing_today": ["Air fryers", "Pool cleaners", "Dryers", "Slow cookers", "Kettle/toaster packs", "Rugs", "Outdoor settings", "Kitchenware"],
+  "sales": [
+    {"text": "IKEA Black Friday: 10% off almost everything, in store and online, until 30 Nov. Covers rugs and outdoor furniture but not appliances or kitchens.", "links": [{"label": "OzBargain", "url": "https://www.ozbargain.com.au/node/981671"}]},
+    {"text": "Costco's Barista Express deal ends 8 Nov.", "links": []},
+    {"text": "OzBargain commenters say ShopBack may run a \"mystery cashback\" on 9 Nov. Not confirmed.", "links": []},
+    {"text": "Singles Day (11.11) is Wed 11 Nov.", "links": []},
+    {"text": "Early Black Friday sales are live at The Good Guys, 99 Bikes and others. Black Friday itself is 27 Nov.", "links": []}
+  ]
+}
