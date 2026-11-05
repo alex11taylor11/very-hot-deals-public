@@ -160,21 +160,35 @@ def deal_html(d, rank=None, show_cat=False, cat_name=None):
 </article>"""
 
 
+def top_panel(b):
+    inner = ['<h2>🔥 Top 3 deals today</h2>']
+    if b["top"]:
+        inner.append('<div class="grid">')
+        inner += [deal_html(d, i + 1, show_cat=True) for i, d in enumerate(b["top"][:3])]
+        inner.append("</div>")
+    else:
+        inner.append('<p class="empty">Nothing met the bar today.</p>')
+    return inner
+
+
 def tabs_html(b):
+    """Returns (tab bar html, panels html). The first tab is Top 3."""
     by_name = {c.get("name"): c for c in b.get("categories", [])}
     cats = list(CATEGORIES) + [(n, n) for n in by_name if n not in CAT_NAMES]
-    first_with_deals = next((n for n, _ in cats if by_name.get(n, {}).get("deals")), cats[0][0])
-    tabs, panels = [], []
+    tabs = ['<button role="tab" id="tab-top" aria-controls="p-top" aria-selected="true" class="has hot" '
+            'data-tab="top">🔥 Top 3</button>']
+    panels = [f'<section role="tabpanel" id="p-top" aria-labelledby="tab-top" class="panel hero">'
+              f'{"".join(top_panel(b))}</section>']
     for name, label in cats:
         c = by_name.get(name, {})
         deals = c.get("deals", [])[:MAX_PER_CATEGORY]
         notes = c.get("notes", [])
         sid = slug(name)
-        sel = name == first_with_deals
+        sel = False
         count = f'<span class="count">{len(deals)}</span>' if deals else ""
         tabs.append(f'<button role="tab" id="tab-{sid}" aria-controls="p-{sid}" aria-selected="{"true" if sel else "false"}"'
                     f' class="{"has" if deals else "none"}" data-tab="{sid}">{e(label)}{count}</button>')
-        inner = [f'<h2 class="panel-h">{e(name)}</h2>']
+        inner = [f'<h2>{ICONS.get(name, "🛒")} {e(name)}</h2>']
         inner += [deal_html(d, cat_name=name) for d in deals]
         if not deals:
             inner.append('<p class="empty">No deals met the bar today.</p>')
@@ -184,8 +198,9 @@ def tabs_html(b):
             inner.append('<ul class="notes">' + "".join(f"<li>{e(n)}</li>" for n in notes) + "</ul>")
         panels.append(f'<section role="tabpanel" id="p-{sid}" aria-labelledby="tab-{sid}" class="panel"'
                       f'{"" if sel else " hidden"}>{"".join(inner)}</section>')
-    return ('<h2>By category</h2><div class="tabs" role="tablist" aria-label="Categories">'
-            + "".join(tabs) + "</div>" + "".join(panels))
+    bar = ('<nav class="tabbar"><div class="tabs" role="tablist" aria-label="Deal categories">'
+           + "".join(tabs) + "</div></nav>")
+    return bar, "".join(panels)
 
 
 def parse_date(s):
@@ -206,38 +221,33 @@ def sale_html(s, today):
         cls, tile = ("urgent" if n <= 2 else "live"), ends
     else:
         chip, cls, tile = "Live now", "live", None
-    if tile:
-        label = "Ends" if cls in ("live", "urgent") else tile.strftime("%a")
-        tile_html = (f'<div class="tile"><small>{label}</small><b>{tile.day}</b>'
-                     f'<small>{tile.strftime("%b")}</small></div>')
-    else:
-        tile_html = '<div class="tile flame"><b>🔥</b><small>Now</small></div>'
-    rumour = '' if s.get("confirmed", True) else '<span class="chip rumour">Rumoured</span>'
-    title = s.get("title") or ""
-    return f"""<article class="sale {cls}">{tile_html}<div class="sbody">
-<div class="chips"><span class="chip {cls}">{e(chip)}</span>{rumour}</div>
-{f'<h3>{e(title)}</h3>' if title else ''}<p>{e(s.get("text"))}</p>{links_html(s.get("links"))}</div></article>"""
+    when = f'{tile.strftime("%a")} {tile.day} {tile.strftime("%b")}' if tile else ""
+    rumour = '' if s.get("confirmed", True) else '<span class="chip rumour">Rumour</span>'
+    title = s.get("title") or s.get("text") or ""
+    text = s.get("text") if s.get("title") else ""
+    detail = (f'<p>{e(text)}</p>' if text else "") + links_html(s.get("links"))
+    head = (f'<span class="chip {cls}">{e(chip)}</span><b>{e(title)}</b>{rumour}'
+            f'<span class="when">{e(when)}</span>')
+    if not detail:
+        return f'<li class="sale"><div class="srow">{head}</div></li>'
+    return f'<li class="sale"><details><summary class="srow">{head}</summary>{detail}</details></li>'
+
 
 
 def sales_html(b):
     if not b.get("sales"):
         return ""
     today = parse_date(b["date"])
-    return ('<section class="sales-strip"><h2>📅 Sales in the next 7 days</h2><div class="sales">'
-            + "".join(sale_html(s, today) for s in b["sales"]) + "</div></section>")
+    return ('<section class="sales-strip"><h2>📅 Sales in the next 7 days</h2><ul class="sales">'
+            + "".join(sale_html(s, today) for s in b["sales"]) + "</ul></section>")
 
 
-def brief_html(b):
-    parts = [f'<p class="summary">{e(b["summary"])}</p>', sales_html(b)]
-    parts.append('<section class="hero"><h2>Top 3 deals today</h2>')
-    if b["top"]:
-        parts.append('<div class="grid">')
-        parts += [deal_html(d, i + 1, show_cat=True) for i, d in enumerate(b["top"][:3])]
-        parts.append("</div>")
-    else:
-        parts.append('<p class="empty">Nothing met the bar today.</p>')
-    parts.append("</section>")
-    parts.append(tabs_html(b))
+def brief_html(b, nav):
+    bar, panels = tabs_html(b)
+    parts = [bar,
+             f'<section class="summary-box"><div class="sumhead"><h2>Summary · {e(b["display_date"])}</h2>'
+             f'<span class="nav">{nav}</span></div><p class="summary">{e(b["summary"])}</p></section>',
+             sales_html(b), panels]
     for n in b.get("notes", []):
         parts.append(f'<p class="note"><b>{e(n.get("label"))}:</b> {e(n.get("text"))}</p>')
     return "\n".join(parts)
@@ -250,18 +260,22 @@ CSS = """
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
 a{color:var(--hot)}
 .wrap{max-width:820px;margin:0 auto;padding:0 16px 48px}
-header{padding:28px 0 8px;border-bottom:1px solid var(--line);margin-bottom:20px}
+header{padding:24px 0 12px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
 .brand .flame{font-size:28px}
 .brand b{font-size:24px;letter-spacing:-.02em}
 .tag{color:var(--muted);margin:6px 0 0;font-size:14px}
-.dateline{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-top:14px}
-.dateline .d{font-weight:700;font-size:18px}
-.dateline a{font-size:14px}
-.summary{font-size:18px;margin:0 0 8px}
+.tabbar{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);margin:0 -16px;padding:10px 0 8px;border-bottom:1px solid var(--line)}
+.summary-box{margin-top:18px}
+.sumhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sumhead h2{margin:0 0 6px;color:var(--ink)}
+.sumhead .nav{font-size:14px}
+.summary{font-size:17px;margin:0}
 h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:32px 0 12px}
-.hero{background:linear-gradient(180deg,var(--hot-soft),transparent);border-radius:18px;padding:4px 14px 14px;margin:20px -14px 0}
-.hero h2{color:var(--hot);font-size:15px;margin-top:18px}
+.panel{scroll-margin-top:64px;margin-top:22px}
+.panel h2{margin-top:0}
+.hero{background:linear-gradient(180deg,var(--hot-soft),transparent);border-radius:18px;padding:16px 14px 14px;margin:22px -14px 0}
+.hero h2{color:var(--hot);font-size:15px}
 .grid{display:grid;gap:12px}
 .deal{display:flex;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:12px}
 .grid .deal{margin:0}
@@ -286,17 +300,18 @@ h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--mute
 .deal p{margin:8px 0 0;font-size:15px}
 .links{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .links a{font-size:14px;text-decoration:none;border:1px solid var(--line);padding:4px 10px;border-radius:8px;background:var(--bg)}
-.tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;margin:0 -16px 14px;padding-left:16px;padding-right:16px;scrollbar-width:thin}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:0 16px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
 .tabs button{flex:none;font:inherit;font-size:14px;font-weight:600;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:7px 12px;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:6px}
 .tabs button.none{color:var(--muted);font-weight:500}
 .tabs button[aria-selected=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tabs button.hot{border-color:var(--hot);color:var(--hot)}
+.tabs button.hot[aria-selected=true]{background:var(--hot);color:#fff}
 .tabs .count{font-size:12px;background:var(--hot);color:#fff;border-radius:999px;padding:0 7px;line-height:18px}
-.panel-h{display:none}
 .notes-title{font-weight:600;margin:14px 0 6px;font-size:15px}
-@media (min-width:700px){.tabs{flex-wrap:wrap;overflow:visible}}
-.nojs .tabs{display:none}
+@media (min-width:700px){.tabs{flex-wrap:wrap;overflow:visible}.tabbar{margin:0;padding:10px 0 8px}.tabs{padding:0}}
+.nojs .tabbar{display:none}
 .nojs .panel[hidden]{display:block}
-.nojs .panel-h{display:block}
 .notes{padding-left:20px;margin:0}
 .notes li{margin-bottom:8px}
 .panel .notes{margin-top:8px;color:var(--muted);font-size:15px}
@@ -311,27 +326,27 @@ h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--mute
 .thumb.fallback{background:var(--hot-soft)}
 .thumb.fallback span{display:block}
 @media (max-width:480px){.deal{flex-wrap:wrap}.deal.top .thumb,.thumb{width:64px;height:64px}.deal.top .thumb span,.thumb span{font-size:30px}.deal .body{flex-basis:100%}.deal.top .body{flex-basis:100%}}
-.sales-strip h2{margin-top:22px}
-.sales{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:2px 16px 10px}
-.sale{flex:none;width:270px;scroll-snap-align:start;display:flex;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;border-top:4px solid var(--blue)}
-.sale.live{border-top-color:var(--ok)}
-.sale.urgent{border-top-color:var(--hot)}
-.sale .tile{flex:none;width:52px;height:60px;border-radius:10px;background:var(--bg);border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1}
-.sale .tile b{font-size:22px}
-.sale .tile small{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
-.sale.urgent .tile{background:var(--hot-soft);border-color:transparent}
-.sale.urgent .tile b{color:var(--hot)}
-.sbody{min-width:0}
-.sale h3{margin:6px 0 2px;font-size:16px;line-height:1.25}
-.sale p{margin:0;font-size:14px;color:var(--muted)}
-.sale .links{margin-top:8px}
-.chips{display:flex;gap:6px;flex-wrap:wrap}
+.sales-strip h2{margin:22px 0 8px}
+.sales{list-style:none;margin:0;padding:0;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.sale+.sale{border-top:1px solid var(--line)}
+.srow{display:flex;align-items:center;gap:8px;padding:8px 12px;font-size:14px;min-width:0}
+summary.srow{cursor:pointer;list-style:none}
+summary.srow::-webkit-details-marker{display:none}
+summary.srow::after{content:"▾";color:var(--muted);font-size:12px;margin-left:2px}
+details[open] summary.srow::after{content:"▴"}
+.srow b{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600}
+.srow .when{color:var(--muted);font-size:12px;white-space:nowrap}
+.srow .chip{flex:none;text-align:center}
+.srow .chip:first-child{min-width:104px}
+.sale details p{margin:0;padding:0 12px 4px;font-size:14px;color:var(--muted)}
+.sale details .links{margin:4px 12px 10px}
+@media (max-width:480px){.srow .when{display:none}.srow .chip:first-child{min-width:92px}}
 .chip{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:2px 8px;border-radius:999px}
 .chip.live{background:var(--ok-soft);color:var(--ok)}
 .chip.urgent{background:var(--hot);color:#fff}
 .chip.soon{background:var(--blue-soft);color:var(--blue)}
 .chip.rumour{background:var(--amber-soft);color:var(--amber)}
-@media (min-width:700px){.sales{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));overflow:visible;margin:0;padding:0}.sale{width:auto}}
+
 footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
 """
 
@@ -351,7 +366,9 @@ document.documentElement.classList.remove('nojs');
     });
   }
   tabs.forEach(function(t,i){
-    t.addEventListener('click',function(){pick(t.dataset.tab);history.replaceState(null,'','#'+t.dataset.tab);});
+    t.addEventListener('click',function(){pick(t.dataset.tab);history.replaceState(null,'','#'+t.dataset.tab);
+      var p=document.getElementById('p-'+t.dataset.tab),r=p.getBoundingClientRect();
+      if(r.top<70||r.top>innerHeight*0.6)p.scrollIntoView({behavior:'smooth',block:'start'});});
     t.addEventListener('keydown',function(ev){
       var j=ev.key==='ArrowRight'?i+1:ev.key==='ArrowLeft'?i-1:null;
       if(j===null)return;ev.preventDefault();pick(tabs[(j+tabs.length)%tabs.length].dataset.tab,true);
@@ -395,8 +412,7 @@ def main():
         if i > 0:
             nav.append(f'<a href="{briefs[i - 1]["date"]}.html">{e(briefs[i - 1]["display_date"])} →</a>')
         nav.append('<a href="index.html">All days</a>')
-        body = (f'<div class="dateline"><span class="d">{e(b["display_date"])}</span>'
-                f'<span>{" · ".join(nav)}</span></div>' + brief_html(b))
+        body = brief_html(b, " · ".join(nav))
         (ARCHIVE / f"{b['date']}.html").write_text(
             page(f"{SITE} – {b['display_date']}", body, "../"), encoding="utf-8")
 
@@ -406,8 +422,7 @@ def main():
         page(f"{SITE} – Archive", f'<h2>Past briefs</h2><ul class="archive">{items}</ul>', "../"),
         encoding="utf-8")
 
-    body = (f'<div class="dateline"><span class="d">{e(latest["display_date"])}</span>'
-            f'<a href="archive/index.html">Past days</a></div>' + brief_html(latest))
+    body = brief_html(latest, '<a href="archive/index.html">Past days</a>')
     (ROOT / "index.html").write_text(page(f"{SITE} – Today's best deals", body), encoding="utf-8")
     (ROOT / "feed.json").write_text(json.dumps(latest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"Built {len(briefs)} brief(s); latest {latest['date']}")

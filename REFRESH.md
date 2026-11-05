@@ -11,8 +11,10 @@ This site is updated each morning by the Daily Deals Brief scheduled task, right
 
 ## Page layout
 
-- **Sales in the next 7 days**: shown first, as cards with a date tile and a countdown chip ("Ends in 3 days", "In 5 days", "Live now"). The build works out the countdown from `starts`/`ends`, so give real ISO dates (`YYYY-MM-DD`) when known, `""` when not. Set `"confirmed": false` for rumours.
-- **Top 3 deals**: the focus of the page (`top`, max 3).
+- **Category bar** pinned to the top of the page: a "Top 3" button (selected by default) and one button per category.
+- **Summary** with the date, from `summary`.
+- **Sales in the next 7 days**: a slim list, one line per sale with a countdown chip ("Ends in 3 days", "In 5 days", "Live now"); tapping a line shows `text` and links. Keep `title` short (2–4 words). The build works out the countdown from `starts`/`ends`, so give real ISO dates (`YYYY-MM-DD`) when known, `""` when not. Set `"confirmed": false` for rumours.
+- **Top 3 deals**: the default view (`top`, max 3).
 - **One tab per category**: the best deals in each category (`categories`, max 3 deals each). A top-3 deal is **also** listed under its own category tab. Categories with no deals still get a tab that says nothing met the bar; leave them out of the JSON or give them empty `deals`.
 - **Thumbnails**: set `image` on every deal to the product's photo URL, taken from the product or deal page you already fetched: the `og:image` meta tag, or the main product photo. It must be an absolute `https://` URL to the image itself, copied from the page, never guessed. If you can't find one, use `""`; the page then shows a category icon, and it also falls back to the icon if the image fails to load.
 - **Previously posted**: set `previously_posted` on any deal that appeared in an earlier brief, using the display date it was **first** posted (for example `"Sat 31 Oct 2026"`). Use `status` for what changed: `"price unchanged"`, `"price dropped – was $X"`, or `"new"`. The build also labels exact item-name repeats from the archive if you miss one.
