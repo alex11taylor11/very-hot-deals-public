@@ -19,7 +19,8 @@
           "url": "https://roborockstore.com.au/products/qrevo-curv-2-flow"
         }
       ],
-      "previously_posted": "Tue 3 Nov 2026"
+      "previously_posted": "Tue 3 Nov 2026",
+      "image": ""
     },
     {
       "item": "Breville Barista Express (BES870)",
@@ -41,7 +42,8 @@
           "url": "https://www.ozbargain.com.au/node/981537"
         }
       ],
-      "previously_posted": ""
+      "previously_posted": "",
+      "image": ""
     },
     {
       "item": "Hisense 55\" Q6SAU QLED 4K (LED panel)",
@@ -63,7 +65,8 @@
           "url": "https://www.costco.com.au/p/2026052"
         }
       ],
-      "previously_posted": "Sat 31 Oct 2026"
+      "previously_posted": "Sat 31 Oct 2026",
+      "image": ""
     }
   ],
   "categories": [
@@ -89,7 +92,8 @@
               "url": "https://www.costco.com.au/p/2026052"
             }
           ],
-          "previously_posted": "Sat 31 Oct 2026"
+          "previously_posted": "Sat 31 Oct 2026",
+          "image": ""
         }
       ],
       "notes": []
@@ -116,7 +120,8 @@
               "url": "https://www.ozbargain.com.au/node/981537"
             }
           ],
-          "previously_posted": ""
+          "previously_posted": "",
+          "image": ""
         }
       ],
       "notes": [
@@ -157,7 +162,8 @@
               "url": "https://bunnings.youinstock.com.au/search/1108457/"
             }
           ],
-          "previously_posted": "Fri 30 Oct 2026"
+          "previously_posted": "Fri 30 Oct 2026",
+          "image": ""
         }
       ],
       "notes": []
@@ -180,7 +186,8 @@
               "url": "https://roborockstore.com.au/products/qrevo-curv-2-flow"
             }
           ],
-          "previously_posted": "Tue 3 Nov 2026"
+          "previously_posted": "Tue 3 Nov 2026",
+          "image": ""
         }
       ],
       "notes": []
@@ -189,7 +196,11 @@
   "notes": [],
   "sales": [
     {
-      "text": "IKEA Black Friday: 10% off almost everything, in store and online, until 30 Nov. Covers rugs and outdoor furniture but not appliances or kitchens.",
+      "title": "IKEA Black Friday",
+      "text": "10% off almost everything, in store and online. Covers rugs and outdoor furniture, not appliances or kitchens.",
+      "starts": "",
+      "ends": "2026-11-30",
+      "confirmed": true,
       "links": [
         {
           "label": "OzBargain",
@@ -198,19 +209,35 @@
       ]
     },
     {
-      "text": "Costco's Barista Express deal ends 8 Nov.",
+      "title": "Costco Barista Express deal",
+      "text": "Members-only $549 price on the stainless BES875 ends soon.",
+      "starts": "",
+      "ends": "2026-11-08",
+      "confirmed": true,
       "links": []
     },
     {
-      "text": "OzBargain commenters say ShopBack may run a \"mystery cashback\" on 9 Nov. Not confirmed.",
+      "title": "ShopBack mystery cashback",
+      "text": "OzBargain commenters expect a \"mystery cashback\" event. Not confirmed.",
+      "starts": "2026-11-09",
+      "ends": "2026-11-09",
+      "confirmed": false,
       "links": []
     },
     {
-      "text": "Singles Day (11.11) is Wed 11 Nov.",
+      "title": "Singles Day (11.11)",
+      "text": "One-day online sale across many retailers.",
+      "starts": "2026-11-11",
+      "ends": "2026-11-11",
+      "confirmed": true,
       "links": []
     },
     {
-      "text": "Early Black Friday sales are live at The Good Guys, 99 Bikes and others. Black Friday itself is 27 Nov.",
+      "title": "Early Black Friday",
+      "text": "Live now at The Good Guys, 99 Bikes and others. Black Friday itself is 27 Nov.",
+      "starts": "",
+      "ends": "",
+      "confirmed": true,
       "links": []
     }
   ]

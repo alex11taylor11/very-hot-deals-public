@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the Very Hot Deals static site from data/briefs/*.json.
+"""Build the Hot Household Deals - Adelaide static site from data/briefs/*.json.
 
 Outputs:
   index.html                 latest brief (top 3 + one tab per category)
@@ -14,6 +14,7 @@ import html
 import json
 import re
 import shutil
+from datetime import date
 import sys
 from pathlib import Path
 
@@ -21,8 +22,15 @@ ROOT = Path(__file__).resolve().parent.parent
 BRIEFS = ROOT / "data" / "briefs"
 ARCHIVE = ROOT / "archive"
 KEEP_DAYS = 30
-SITE = "Very Hot Deals"
+SITE = "Hot Household Deals - Adelaide"
 TAGLINE = "A daily, hand-checked digest of genuinely good deals from Australian retailers, with Adelaide delivery or pickup."
+
+ICONS = {
+    "TVs": "📺", "Air fryers": "🍟", "Coffee machines": "☕", "Cordless stick vacuums": "🧹",
+    "Robotic pool cleaners": "🏊", "Lawn mowers": "🌱", "Robot vacuums": "🤖", "Heat pump dryers": "👕",
+    "Slow cookers": "🍲", "Kettle and toaster packs": "🍞", "Large rugs": "🟫",
+    "Outdoor dining settings": "🪑", "Kitchenware": "🍳",
+}
 
 # Canonical categories, in tab order: (name used in JSON, short tab label)
 CATEGORIES = [
@@ -121,7 +129,16 @@ def badges(d):
     return f'<div class="badges">{"".join(out)}</div>' if out else ""
 
 
-def deal_html(d, rank=None, show_cat=False):
+def thumb_html(d, cat_name):
+    icon = ICONS.get(cat_name or d.get("category"), "🛒")
+    img = d.get("image") or ""
+    if img.startswith("https://"):
+        return (f'<div class="thumb"><img src="{e(img)}" alt="" loading="lazy" referrerpolicy="no-referrer" '
+                f'onerror="this.parentNode.classList.add(\'fallback\');this.remove()"><span>{icon}</span></div>')
+    return f'<div class="thumb fallback"><span>{icon}</span></div>'
+
+
+def deal_html(d, rank=None, show_cat=False, cat_name=None):
     meta = []
     if d.get("usual"):
         meta.append(f"Usually {e(d['usual'])}")
@@ -132,7 +149,7 @@ def deal_html(d, rank=None, show_cat=False):
     cat = f'<div class="cat">{e(d["category"])}</div>' if show_cat and d.get("category") else ""
     rank_html = f'<div class="rank">{rank}</div>' if rank else ""
     return f"""<article class="deal{' top' if rank else ''}">
-  {rank_html}<div class="body">
+  {rank_html}{thumb_html(d, cat_name)}<div class="body">
     {cat}<h3>{e(d.get('item'))}</h3>
     <div class="priceline"><span class="price">{e(d.get('price'))}</span><span class="retailer">@ {e(d.get('retailer'))}</span></div>
     {badges(d)}
@@ -158,7 +175,7 @@ def tabs_html(b):
         tabs.append(f'<button role="tab" id="tab-{sid}" aria-controls="p-{sid}" aria-selected="{"true" if sel else "false"}"'
                     f' class="{"has" if deals else "none"}" data-tab="{sid}">{e(label)}{count}</button>')
         inner = [f'<h2 class="panel-h">{e(name)}</h2>']
-        inner += [deal_html(d) for d in deals]
+        inner += [deal_html(d, cat_name=name) for d in deals]
         if not deals:
             inner.append('<p class="empty">No deals met the bar today.</p>')
         if notes:
@@ -171,8 +188,47 @@ def tabs_html(b):
             + "".join(tabs) + "</div>" + "".join(panels))
 
 
+def parse_date(s):
+    try:
+        return date.fromisoformat(s) if s else None
+    except ValueError:
+        return None
+
+
+def sale_html(s, today):
+    starts, ends = parse_date(s.get("starts")), parse_date(s.get("ends"))
+    if starts and starts > today:
+        n = (starts - today).days
+        chip, cls, tile = ("Tomorrow" if n == 1 else f"In {n} days"), "soon", starts
+    elif ends:
+        n = (ends - today).days
+        chip = "Ends today" if n <= 0 else "Ends tomorrow" if n == 1 else f"Ends in {n} days"
+        cls, tile = ("urgent" if n <= 2 else "live"), ends
+    else:
+        chip, cls, tile = "Live now", "live", None
+    if tile:
+        label = "Ends" if cls in ("live", "urgent") else tile.strftime("%a")
+        tile_html = (f'<div class="tile"><small>{label}</small><b>{tile.day}</b>'
+                     f'<small>{tile.strftime("%b")}</small></div>')
+    else:
+        tile_html = '<div class="tile flame"><b>🔥</b><small>Now</small></div>'
+    rumour = '' if s.get("confirmed", True) else '<span class="chip rumour">Rumoured</span>'
+    title = s.get("title") or ""
+    return f"""<article class="sale {cls}">{tile_html}<div class="sbody">
+<div class="chips"><span class="chip {cls}">{e(chip)}</span>{rumour}</div>
+{f'<h3>{e(title)}</h3>' if title else ''}<p>{e(s.get("text"))}</p>{links_html(s.get("links"))}</div></article>"""
+
+
+def sales_html(b):
+    if not b.get("sales"):
+        return ""
+    today = parse_date(b["date"])
+    return ('<section class="sales-strip"><h2>📅 Sales in the next 7 days</h2><div class="sales">'
+            + "".join(sale_html(s, today) for s in b["sales"]) + "</div></section>")
+
+
 def brief_html(b):
-    parts = [f'<p class="summary">{e(b["summary"])}</p>']
+    parts = [f'<p class="summary">{e(b["summary"])}</p>', sales_html(b)]
     parts.append('<section class="hero"><h2>Top 3 deals today</h2>')
     if b["top"]:
         parts.append('<div class="grid">')
@@ -184,11 +240,6 @@ def brief_html(b):
     parts.append(tabs_html(b))
     for n in b.get("notes", []):
         parts.append(f'<p class="note"><b>{e(n.get("label"))}:</b> {e(n.get("text"))}</p>')
-    if b.get("sales"):
-        parts.append('<h2>Sales in the next 7 days</h2><ul class="sales">')
-        for s in b["sales"]:
-            parts.append(f'<li>{e(s.get("text"))}{links_html(s.get("links"))}</li>')
-        parts.append("</ul>")
     return "\n".join(parts)
 
 
@@ -246,13 +297,41 @@ h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--mute
 .nojs .tabs{display:none}
 .nojs .panel[hidden]{display:block}
 .nojs .panel-h{display:block}
-.notes,.sales{padding-left:20px;margin:0}
-.notes li,.sales li{margin-bottom:8px}
+.notes{padding-left:20px;margin:0}
+.notes li{margin-bottom:8px}
 .panel .notes{margin-top:8px;color:var(--muted);font-size:15px}
-.sales .links{margin-top:4px}
 .note{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:12px 0}
 .empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);border-radius:12px;padding:14px;margin:0 0 12px}
 .archive li{margin:6px 0}
+.thumb{flex:none;width:72px;height:72px;border-radius:12px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden}
+.deal.top .thumb{width:96px;height:96px}
+.thumb img{width:100%;height:100%;object-fit:contain;padding:4px}
+.thumb span{display:none;font-size:34px}
+.deal.top .thumb span{font-size:44px}
+.thumb.fallback{background:var(--hot-soft)}
+.thumb.fallback span{display:block}
+@media (max-width:480px){.deal{flex-wrap:wrap}.deal.top .thumb,.thumb{width:64px;height:64px}.deal.top .thumb span,.thumb span{font-size:30px}.deal .body{flex-basis:100%}.deal.top .body{flex-basis:100%}}
+.sales-strip h2{margin-top:22px}
+.sales{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:2px 16px 10px}
+.sale{flex:none;width:270px;scroll-snap-align:start;display:flex;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;border-top:4px solid var(--blue)}
+.sale.live{border-top-color:var(--ok)}
+.sale.urgent{border-top-color:var(--hot)}
+.sale .tile{flex:none;width:52px;height:60px;border-radius:10px;background:var(--bg);border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1}
+.sale .tile b{font-size:22px}
+.sale .tile small{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.sale.urgent .tile{background:var(--hot-soft);border-color:transparent}
+.sale.urgent .tile b{color:var(--hot)}
+.sbody{min-width:0}
+.sale h3{margin:6px 0 2px;font-size:16px;line-height:1.25}
+.sale p{margin:0;font-size:14px;color:var(--muted)}
+.sale .links{margin-top:8px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:2px 8px;border-radius:999px}
+.chip.live{background:var(--ok-soft);color:var(--ok)}
+.chip.urgent{background:var(--hot);color:#fff}
+.chip.soon{background:var(--blue-soft);color:var(--blue)}
+.chip.rumour{background:var(--amber-soft);color:var(--amber)}
+@media (min-width:700px){.sales{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));overflow:visible;margin:0;padding:0}.sale{width:auto}}
 footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
 """
 
@@ -267,7 +346,8 @@ document.documentElement.classList.remove('nojs');
       t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;
       document.getElementById('p-'+t.dataset.tab).hidden=!on;
       if(on&&focus)t.focus();
-      if(on)t.scrollIntoView({block:'nearest',inline:'nearest'});
+      if(on){var bar=t.parentNode,l=t.offsetLeft-bar.offsetLeft;
+        if(l<bar.scrollLeft||l+t.offsetWidth>bar.scrollLeft+bar.clientWidth)bar.scrollLeft=l-16;}
     });
   }
   tabs.forEach(function(t,i){

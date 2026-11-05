@@ -1,4 +1,4 @@
-# Very Hot Deals
+# Hot Household Deals - Adelaide
 
 A daily digest of genuinely good deals from Australian retailers (Adelaide delivery or pickup), published with GitHub Pages.
 
