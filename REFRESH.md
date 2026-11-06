@@ -19,9 +19,9 @@ One scrolling page, top to bottom:
 - **Best stores right now**: up to 5 retailers, ranked (`stores`: `name`, `why`, `links`).
 - **All deals by category**, with search, "Verified only" and sort controls. Each category with deals shows its `advice` ("buy now or wait") and up to 3 deals (`categories`). A top-5 deal is **also** listed under its own category. Categories with no deals are collapsed into one "Nothing worth buying today" line; their `advice` or `notes` show there, so use `notes` for a best price to watch.
 - **Not as good as they look**: from `avoid`, notable fake or inflated discounts (`item`, `retailer`, `why`).
-- Each deal card shows price, usual price, saving, badges (verified/unverified, new, price drop, listed since, stretch pick), retailer, end date, reviews, `why`, a fold-out "Price check & delivery" panel, and a button to the first link (the label is generated as "View at <retailer>").
+- Each deal card (text only, no images) shows price, usual price, saving, badges (verified/unverified, new, price drop, listed since, stretch pick), retailer, end date, reviews, `why`, a fold-out "Price check & delivery" panel, and a button to the first link (the label is generated as "View at <retailer>").
 - **Price check**: every deal carries `verified` (`"verified"` or `"unverified"`; leave "not a deal" items out and list notable ones under `avoid`), `lowest` (lowest price on record, with date if known), `price_source` (where the history came from), `reviews` (rating, review count, main complaint) and `delivery` (Adelaide delivery cost/time or click & collect; no street, suburb or postcode).
-- **Thumbnails**: set `image` on every deal to the product's photo URL, taken from the product or deal page you already fetched: the `og:image` meta tag, or the main product photo. It must be an absolute `https://` URL to the image itself, copied from the page, never guessed. If you can't find one, use `""`; the page then shows a category icon, and it also falls back to the icon if the image fails to load.
+- **No images**: the site shows no product photos or icons. Leave `image` out (or `""`); don't spend time finding photos.
 - **Previously posted**: set `previously_posted` on any deal that appeared in an earlier brief, using the display date it was **first** posted (for example `"Sat 31 Oct 2026"`). Use `status` for what changed: `"price unchanged"`, `"price dropped – was $X"`, or `"new"`. The build also labels exact item-name repeats from the archive if you miss one.
 
 ## Category names (use exactly; this is the tab order)
@@ -90,7 +90,6 @@ DEAL:
   "stretch": false,
   "why": "Why it's good, caveats.",
   "ends": "15 Nov",
-  "image": "https://.../product.jpg",
   "links": [ { "label": "Retailer", "url": "https://..." } ]
 }
 ```

@@ -66,31 +66,18 @@ h1,h2,h3{letter-spacing:-.02em;line-height:1.2}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
 .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr))}
 .top-grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr))}
-#cat-list .grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,500px),1fr))}
-/* compact row cards for category lists */
-.deal:not(.is-top){flex-direction:row}
-.deal:not(.is-top) .media{width:132px;flex:none;border-bottom:0;background:transparent;padding:16px 0 16px 16px}
-.deal:not(.is-top) .thumb{height:116px;border-radius:12px;border:1px solid var(--line)}
-.deal:not(.is-top) .thumb img{padding:8px}
-.deal:not(.is-top) .thumb span{font-size:40px}
-.deal:not(.is-top) .price{font-size:24px}
+
 .empty{color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:var(--r);padding:18px;margin:0}
 .heads-up{margin:24px 0 0;background:var(--blue-soft);border-radius:var(--r-sm);padding:12px 16px}
 
 /* deal card */
 .deal{display:flex;flex-direction:column;overflow:hidden;transition:transform .15s ease,box-shadow .15s ease}
 .deal:hover{transform:translateY(-2px);box-shadow:0 2px 4px rgb(0 0 0/.04),0 12px 32px rgb(0 0 0/.08)}
-.media{position:relative;background:var(--surface-2);border-bottom:1px solid var(--line)}
-.thumb{height:168px;display:grid;place-items:center;background:#fff}
-.thumb img{max-width:100%;max-height:100%;object-fit:contain;padding:16px}
-.thumb span{display:none;font-size:56px;filter:saturate(.9)}
-.thumb.fallback{background:radial-gradient(120% 120% at 30% 20%,var(--accent-soft),var(--surface-2))}
-.thumb.fallback span{display:block}
-.rank{position:absolute;top:12px;left:12px;z-index:1;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:var(--bg);font-weight:800;font-size:15px}
-.is-top .rank{background:var(--accent);color:var(--accent-ink)}
+.rank{width:24px;height:24px;border-radius:50%;display:inline-grid;place-items:center;background:var(--accent);color:var(--accent-ink);font-weight:800;font-size:13px;letter-spacing:0}
+
 .content{padding:16px 18px 18px;display:flex;flex-direction:column;gap:10px;flex:1}
-.eyebrow{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--accent)}
-.eyebrow+h3{margin-top:-6px}
+.eyebrow{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--accent)}
+.eyebrow+h3{margin-top:-2px}
 .deal h3{margin:0;font-size:17px;font-weight:700;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .priceline{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
 .price{font-size:28px;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
@@ -185,14 +172,8 @@ footer{max-width:1120px;margin:0 auto;padding:24px 20px 40px;border-top:1px soli
 @media (max-width:560px){
   .wrap{padding:0 16px 48px}.jump-inner,.hero-inner,.masthead .bar{padding-left:16px;padding-right:16px}
   .sec{margin-top:36px}.sec-head h2{font-size:21px}
-  .thumb{height:140px}.price{font-size:24px}
-  .is-top .thumb{height:120px}
-  .deal:not(.is-top) .media{width:88px;padding:14px 0 14px 14px}
-  .deal:not(.is-top) .thumb{height:74px}
-  .deal:not(.is-top) .thumb span{font-size:30px}
-  .deal:not(.is-top) .content{padding:14px 14px 14px 12px}
-  .deal:not(.is-top) .price{font-size:21px}
-  .btn{padding:9px 14px}
+  .price{font-size:24px}
+  .is-top       .btn{padding:9px 14px}
   .toolbar{top:53px}.sort{flex:1}.toggle{flex:1}
   .rail{margin:0 -16px;padding:4px 16px 12px}
   .stores li{flex-wrap:wrap}.stores .btn{margin-left:42px}
@@ -211,37 +192,34 @@ footer{max-width:1120px;margin:0 auto;padding:24px 20px 40px;border-top:1px soli
     <ul class="stats"><li><b>4</b> deals</li><li><b>4</b> of 17 categories</li><li><b>5</b> sales on</li></ul>
   </div>
 </section>
-<nav class="jump" aria-label="Sections"><div class="jump-inner"><a href="#top">Top deals</a><a href="#sales">What's on</a><a href="#c-coffee-machines">☕ Coffee <span>1</span></a><a href="#c-tvs">📺 TVs <span>1</span></a><a href="#c-robot-vacuums">🤖 Robot vacs <span>1</span></a><a href="#c-lawn-mowers">🌱 Mowers <span>1</span></a></div></nav>
+<nav class="jump" aria-label="Sections"><div class="jump-inner"><a href="#top">Top deals</a><a href="#sales">What's on</a><a href="#c-coffee-machines">Coffee <span>1</span></a><a href="#c-tvs">TVs <span>1</span></a><a href="#c-robot-vacuums">Robot vacs <span>1</span></a><a href="#c-lawn-mowers">Mowers <span>1</span></a></div></nav>
 <main class="wrap">
 <section id="top" class="sec"><div class="sec-head"><h2>Today's top 3</h2><p>The best verified deals across every category.</p></div><div class="grid top-grid"><article class="card deal is-top" data-verified="" data-saving="22" data-price="999.0" data-text="roborock qrevo curv 2 flow robot vacuum mop self empty dock roborock au covers both vacuuming and mopping and the dock empties itself robot vacuums">
-  <div class="media"><span class="rank" aria-label="Rank 1">1</span><div class="thumb fallback"><span aria-hidden="true">🤖</span></div></div>
   <div class="content">
-    <div class="eyebrow">Robot vacuums</div><h3>Roborock Qrevo Curv 2 Flow (robot vacuum + mop, self-empty dock)</h3>
+    <div class="eyebrow"><span class="rank" aria-label="Rank 1">1</span>Robot vacuums</div><h3>Roborock Qrevo Curv 2 Flow (robot vacuum + mop, self-empty dock)</h3>
     <div class="priceline"><span class="price">$999</span><s class="was">$1,799</s><span class="save">About 22% below the best street price</span></div>
     <div class="pills"><span class="pill muted">Listed since Tue 3 Nov 2026</span></div>
-    <div class="facts"><span>🏬 Roborock AU</span></div>
+    <div class="facts"><span>Roborock AU</span></div>
     <p class="why">Covers both vacuuming and mopping, and the dock empties itself.</p>
     
     <div class="actions"><a class="btn" href="https://roborockstore.com.au/products/qrevo-curv-2-flow" rel="noopener" target="_blank">View at Roborock AU<span aria-hidden="true">↗</span></a></div>
   </div>
 </article><article class="card deal is-top" data-verified="" data-saving="17" data-price="490.0" data-text="breville barista express bes870 woolworths everyday market listed at 599 topcashback pays 20 back on orders over 150 01 with no cap calculated on the pre gst price about 545 so roughly 109 back built in grinder and a proper steam wand cashback arrives later and only pays if your click is tracked check the listing is the bes870 sold by woolworths coffee machines">
-  <div class="media"><span class="rank" aria-label="Rank 2">2</span><div class="thumb fallback"><span aria-hidden="true">☕</span></div></div>
   <div class="content">
-    <div class="eyebrow">Coffee machines</div><h3>Breville Barista Express (BES870)</h3>
+    <div class="eyebrow"><span class="rank" aria-label="Rank 2">2</span>Coffee machines</div><h3>Breville Barista Express (BES870)</h3>
     <div class="priceline"><span class="price">~$490 after cashback</span><s class="was">$585–$599</s><span class="save">About 17% below usual</span></div>
     <div class="pills"><span class="pill new">New today</span></div>
-    <div class="facts"><span>🏬 Woolworths Everyday Market</span><span>⏱ Ends No end date posted</span></div>
+    <div class="facts"><span>Woolworths Everyday Market</span><span>Ends No end date posted</span></div>
     <p class="why">Listed at $599. TopCashback pays 20% back on orders over $150.01 with no cap, calculated on the pre-GST price (about $545), so roughly $109 back. Built-in grinder and a proper steam wand. Cashback arrives later and only pays if your click is tracked; check the listing is the BES870 sold by Woolworths.</p>
     
     <div class="actions"><a class="btn" href="https://www.ozbargain.com.au/node/981670" rel="noopener" target="_blank">View at Woolworths Everyday Market<span aria-hidden="true">↗</span></a><a class="btn ghost" href="https://www.ozbargain.com.au/node/981537" rel="noopener" target="_blank">Deal thread<span aria-hidden="true">↗</span></a></div>
   </div>
 </article><article class="card deal is-top" data-verified="" data-saving="25" data-price="549.99" data-text="hisense 55 q6sau qled 4k led panel costco costco membership required product page may now show out of stock so check first note it s a 60hz panel tvs">
-  <div class="media"><span class="rank" aria-label="Rank 3">3</span><div class="thumb fallback"><span aria-hidden="true">📺</span></div></div>
   <div class="content">
-    <div class="eyebrow">TVs</div><h3>Hisense 55&quot; Q6SAU QLED 4K (LED panel)</h3>
+    <div class="eyebrow"><span class="rank" aria-label="Rank 3">3</span>TVs</div><h3>Hisense 55&quot; Q6SAU QLED 4K (LED panel)</h3>
     <div class="priceline"><span class="price">$549.99 delivered</span><span class="save">About 25% below other retailers</span></div>
     <div class="pills"><span class="pill muted">Listed since Sat 31 Oct 2026</span></div>
-    <div class="facts"><span>🏬 Costco</span><span>⏱ Ends 15 Nov</span></div>
+    <div class="facts"><span>Costco</span><span>Ends 15 Nov</span></div>
     <p class="why">Costco membership required. Product page may now show out of stock, so check first. Note it&#x27;s a 60Hz panel.</p>
     
     <div class="actions"><a class="btn" href="https://www.ozbargain.com.au/node/981001" rel="noopener" target="_blank">View at Costco<span aria-hidden="true">↗</span></a><a class="btn ghost" href="https://www.costco.com.au/p/2026052" rel="noopener" target="_blank">Costco<span aria-hidden="true">↗</span></a></div>
@@ -279,54 +257,50 @@ footer{max-width:1120px;margin:0 auto;padding:24px 20px 40px;border-top:1px soli
   
 </li></ul></section>
 <section id="categories" class="sec"><div class="sec-head"><h2>All deals by category</h2><p>Up to three of the best deals in each category.</p></div><div class="toolbar" role="search">
-  <label class="search"><span aria-hidden="true">🔎</span><input type="search" id="q" placeholder="Search deals, brands, stores" aria-label="Search deals"></label>
+  <label class="search"><input type="search" id="q" placeholder="Search deals, brands, stores" aria-label="Search deals"></label>
   <label class="toggle"><input type="checkbox" id="verified-only"> Verified only</label>
   <label class="sort">Sort <select id="sort" aria-label="Sort deals"><option value="best">Best match</option><option value="saving">Biggest saving</option><option value="price">Lowest price</option></select></label>
-</div><div id="cat-list"><section id="c-coffee-machines" class="cat sec-sub" data-cat="Coffee machines"><div class="cat-head"><h3><span aria-hidden="true">☕</span> Coffee machines</h3><span class="count">1</span></div><div class="grid"><article class="card deal" data-verified="" data-saving="17" data-price="490.0" data-text="breville barista express bes870 woolworths everyday market listed at 599 topcashback pays 20 back on orders over 150 01 with no cap calculated on the pre gst price about 545 so roughly 109 back built in grinder and a proper steam wand cashback arrives later and only pays if your click is tracked check the listing is the bes870 sold by woolworths coffee machines">
-  <div class="media"><div class="thumb fallback"><span aria-hidden="true">☕</span></div></div>
+</div><div id="cat-list"><section id="c-coffee-machines" class="cat sec-sub" data-cat="Coffee machines"><div class="cat-head"><h3>Coffee machines</h3><span class="count">1</span></div><div class="grid"><article class="card deal" data-verified="" data-saving="17" data-price="490.0" data-text="breville barista express bes870 woolworths everyday market listed at 599 topcashback pays 20 back on orders over 150 01 with no cap calculated on the pre gst price about 545 so roughly 109 back built in grinder and a proper steam wand cashback arrives later and only pays if your click is tracked check the listing is the bes870 sold by woolworths coffee machines">
   <div class="content">
     <h3>Breville Barista Express (BES870)</h3>
     <div class="priceline"><span class="price">~$490 after cashback</span><s class="was">$585–$599</s><span class="save">About 17% below usual</span></div>
     <div class="pills"><span class="pill new">New today</span></div>
-    <div class="facts"><span>🏬 Woolworths Everyday Market</span><span>⏱ Ends No end date posted</span></div>
+    <div class="facts"><span>Woolworths Everyday Market</span><span>Ends No end date posted</span></div>
     <p class="why">Listed at $599. TopCashback pays 20% back on orders over $150.01 with no cap, calculated on the pre-GST price (about $545), so roughly $109 back. Built-in grinder and a proper steam wand. Cashback arrives later and only pays if your click is tracked; check the listing is the BES870 sold by Woolworths.</p>
     
     <div class="actions"><a class="btn" href="https://www.ozbargain.com.au/node/981670" rel="noopener" target="_blank">View at Woolworths Everyday Market<span aria-hidden="true">↗</span></a><a class="btn ghost" href="https://www.ozbargain.com.au/node/981537" rel="noopener" target="_blank">Deal thread<span aria-hidden="true">↗</span></a></div>
   </div>
-</article></div><div class="cat-notes"><b>Other Barista Express prices</b><ul><li>Breville eBay store: $549 with code SAVINGS (needs eBay Plus).</li><li>Costco: $549 for the stainless BES875, members only, until 8 Nov.</li><li>Amazon AU: $585.</li><li>The Good Guys will price-beat to $578.</li><li>Breville eBay store: refurbished units have been seen at $339.</li></ul></div></section><section id="c-tvs" class="cat sec-sub" data-cat="TVs"><div class="cat-head"><h3><span aria-hidden="true">📺</span> TVs</h3><span class="count">1</span></div><div class="grid"><article class="card deal" data-verified="" data-saving="25" data-price="549.99" data-text="hisense 55 q6sau qled 4k led panel costco costco membership required product page may now show out of stock so check first note it s a 60hz panel tvs">
-  <div class="media"><div class="thumb fallback"><span aria-hidden="true">📺</span></div></div>
+</article></div><div class="cat-notes"><b>Other Barista Express prices</b><ul><li>Breville eBay store: $549 with code SAVINGS (needs eBay Plus).</li><li>Costco: $549 for the stainless BES875, members only, until 8 Nov.</li><li>Amazon AU: $585.</li><li>The Good Guys will price-beat to $578.</li><li>Breville eBay store: refurbished units have been seen at $339.</li></ul></div></section><section id="c-tvs" class="cat sec-sub" data-cat="TVs"><div class="cat-head"><h3>TVs</h3><span class="count">1</span></div><div class="grid"><article class="card deal" data-verified="" data-saving="25" data-price="549.99" data-text="hisense 55 q6sau qled 4k led panel costco costco membership required product page may now show out of stock so check first note it s a 60hz panel tvs">
   <div class="content">
     <h3>Hisense 55&quot; Q6SAU QLED 4K (LED panel)</h3>
     <div class="priceline"><span class="price">$549.99 delivered</span><span class="save">About 25% below other retailers</span></div>
     <div class="pills"><span class="pill muted">Listed since Sat 31 Oct 2026</span></div>
-    <div class="facts"><span>🏬 Costco</span><span>⏱ Ends 15 Nov</span></div>
+    <div class="facts"><span>Costco</span><span>Ends 15 Nov</span></div>
     <p class="why">Costco membership required. Product page may now show out of stock, so check first. Note it&#x27;s a 60Hz panel.</p>
     
     <div class="actions"><a class="btn" href="https://www.ozbargain.com.au/node/981001" rel="noopener" target="_blank">View at Costco<span aria-hidden="true">↗</span></a><a class="btn ghost" href="https://www.costco.com.au/p/2026052" rel="noopener" target="_blank">Costco<span aria-hidden="true">↗</span></a></div>
   </div>
-</article></div></section><section id="c-robot-vacuums" class="cat sec-sub" data-cat="Robot vacuums"><div class="cat-head"><h3><span aria-hidden="true">🤖</span> Robot vacuums</h3><span class="count">1</span></div><div class="grid"><article class="card deal" data-verified="" data-saving="22" data-price="999.0" data-text="roborock qrevo curv 2 flow robot vacuum mop self empty dock roborock au covers both vacuuming and mopping and the dock empties itself robot vacuums">
-  <div class="media"><div class="thumb fallback"><span aria-hidden="true">🤖</span></div></div>
+</article></div></section><section id="c-robot-vacuums" class="cat sec-sub" data-cat="Robot vacuums"><div class="cat-head"><h3>Robot vacuums</h3><span class="count">1</span></div><div class="grid"><article class="card deal" data-verified="" data-saving="22" data-price="999.0" data-text="roborock qrevo curv 2 flow robot vacuum mop self empty dock roborock au covers both vacuuming and mopping and the dock empties itself robot vacuums">
   <div class="content">
     <h3>Roborock Qrevo Curv 2 Flow (robot vacuum + mop, self-empty dock)</h3>
     <div class="priceline"><span class="price">$999</span><s class="was">$1,799</s><span class="save">About 22% below the best street price</span></div>
     <div class="pills"><span class="pill muted">Listed since Tue 3 Nov 2026</span></div>
-    <div class="facts"><span>🏬 Roborock AU</span></div>
+    <div class="facts"><span>Roborock AU</span></div>
     <p class="why">Covers both vacuuming and mopping, and the dock empties itself.</p>
     
     <div class="actions"><a class="btn" href="https://roborockstore.com.au/products/qrevo-curv-2-flow" rel="noopener" target="_blank">View at Roborock AU<span aria-hidden="true">↗</span></a></div>
   </div>
-</article></div></section><section id="c-lawn-mowers" class="cat sec-sub" data-cat="Lawn mowers"><div class="cat-head"><h3><span aria-hidden="true">🌱</span> Lawn mowers</h3><span class="count">1</span></div><div class="grid"><article class="card deal" data-verified="" data-saving="23" data-price="229.0" data-text="ozito pxc 36v 2 18v 41cm brushless mower kit bunnings kit includes 2 batteries and a charger the batteries fit all ozito pxc 18v tools cuts 41cm just over the 33 40cm target stock is patchy item number 1108457 lawn mowers">
-  <div class="media"><div class="thumb fallback"><span aria-hidden="true">🌱</span></div></div>
+</article></div></section><section id="c-lawn-mowers" class="cat sec-sub" data-cat="Lawn mowers"><div class="cat-head"><h3>Lawn mowers</h3><span class="count">1</span></div><div class="grid"><article class="card deal" data-verified="" data-saving="23" data-price="229.0" data-text="ozito pxc 36v 2 18v 41cm brushless mower kit bunnings kit includes 2 batteries and a charger the batteries fit all ozito pxc 18v tools cuts 41cm just over the 33 40cm target stock is patchy item number 1108457 lawn mowers">
   <div class="content">
     <h3>Ozito PXC 36V (2×18V) 41cm brushless mower kit</h3>
     <div class="priceline"><span class="price">$229</span><s class="was">$299</s><span class="save">23% off</span></div>
     <div class="pills"><span class="pill muted">Listed since Fri 30 Oct 2026</span></div>
-    <div class="facts"><span>🏬 Bunnings</span></div>
+    <div class="facts"><span>Bunnings</span></div>
     <p class="why">Kit includes 2 batteries and a charger; the batteries fit all Ozito PXC 18V tools. Cuts 41cm, just over the 33–40cm target. Stock is patchy (item number 1108457).</p>
     
     <div class="actions"><a class="btn" href="https://www.ozbargain.com.au/node/976617" rel="noopener" target="_blank">View at Bunnings<span aria-hidden="true">↗</span></a><a class="btn ghost" href="https://bunnings.youinstock.com.au/search/1108457/" rel="noopener" target="_blank">Stock checker<span aria-hidden="true">↗</span></a></div>
   </div>
-</article></div></section></div><p id="no-results" class="empty" hidden>No deals match those filters.</p><details class="nothing card"><summary>Nothing worth buying today in 13 categories</summary><ul><li><span aria-hidden="true">🔥</span> <b>BBQs</b></li><li><span aria-hidden="true">🖥️</span> <b>Office screens</b></li><li><span aria-hidden="true">💺</span> <b>Office chairs</b></li><li><span aria-hidden="true">🏊</span> <b>Robotic pool cleaners</b></li><li><span aria-hidden="true">🟫</span> <b>Large rugs</b></li><li><span aria-hidden="true">🍟</span> <b>Air fryers</b></li><li><span aria-hidden="true">♨️</span> <b>Microwaves</b></li><li><span aria-hidden="true">🍲</span> <b>Slow cookers</b></li><li><span aria-hidden="true">🔪</span> <b>Kitchenware</b></li><li><span aria-hidden="true">🧹</span> <b>Cordless stick vacuums</b><span class="nd-note">The Samsung Bespoke Jet Ultra stick vacuum was $749 on eBay but is now sold out at eBay, Myer and Samsung. Commenters on the deal expect it to come back.</span></li><li><span aria-hidden="true">👕</span> <b>Heat pump dryers</b></li><li><span aria-hidden="true">🍞</span> <b>Kettle and toaster packs</b></li><li><span aria-hidden="true">🪑</span> <b>Outdoor dining settings</b></li></ul></details></section>
+</article></div></section></div><p id="no-results" class="empty" hidden>No deals match those filters.</p><details class="nothing card"><summary>Nothing worth buying today in 13 categories</summary><ul><li><b>BBQs</b></li><li><b>Office screens</b></li><li><b>Office chairs</b></li><li><b>Robotic pool cleaners</b></li><li><b>Large rugs</b></li><li><b>Air fryers</b></li><li><b>Microwaves</b></li><li><b>Slow cookers</b></li><li><b>Kitchenware</b></li><li><b>Cordless stick vacuums</b><span class="nd-note">The Samsung Bespoke Jet Ultra stick vacuum was $749 on eBay but is now sold out at eBay, Myer and Samsung. Commenters on the deal expect it to come back.</span></li><li><b>Heat pump dryers</b></li><li><b>Kettle and toaster packs</b></li><li><b>Outdoor dining settings</b></li></ul></details></section>
 </main>
 <footer><span>Genuinely good deals from Australian retailers, price-history checked every morning. Adelaide delivery or pickup.</span><span>Prices and stock change quickly: check the retailer before buying. Not affiliated with any retailer; no affiliate links.</span></footer>
 <script>

@@ -184,13 +184,6 @@ def badges(d):
     return f'<div class="pills">{"".join(out)}</div>' if out else ""
 
 
-def thumb(d, cat):
-    icon = ICONS.get(cat or d.get("category"), "🛒")
-    img = d.get("image") or ""
-    if img.startswith("https://"):
-        return (f'<div class="thumb"><img src="{e(img)}" alt="" loading="lazy" referrerpolicy="no-referrer" '
-                f'onerror="this.parentNode.classList.add(\'fallback\');this.remove()"><span aria-hidden="true">{icon}</span></div>')
-    return f'<div class="thumb fallback"><span aria-hidden="true">{icon}</span></div>'
 
 
 def deal_card(d, cat=None, rank=None):
@@ -204,11 +197,11 @@ def deal_card(d, cat=None, rank=None):
     save = f'<span class="save">{e(d["saving"])}</span>' if d.get("saving") else ""
     facts = []
     if d.get("retailer"):
-        facts.append(f'<span>🏬 {e(d["retailer"])}</span>')
+        facts.append(f'<span>{e(d["retailer"])}</span>')
     if d.get("ends"):
-        facts.append(f'<span>⏱ Ends {e(d["ends"])}</span>')
+        facts.append(f'<span>Ends {e(d["ends"])}</span>')
     if d.get("reviews"):
-        facts.append(f'<span>⭐ {e(d["reviews"])}</span>')
+        facts.append(f'<span>★ {e(d["reviews"])}</span>')
 
     detail = []
     for label, key in (("Lowest on record", "lowest"), ("Price history", "price_source"),
@@ -219,10 +212,9 @@ def deal_card(d, cat=None, rank=None):
                if detail else "")
     retailer = d.get("retailer")
     rank_html = f'<span class="rank" aria-label="Rank {rank}">{rank}</span>' if rank else ""
-    eyebrow = f'<div class="eyebrow">{e(cat)}</div>' if rank and cat else ""
+    eyebrow = (f'<div class="eyebrow">{rank_html}{e(cat)}</div>' if rank else "")
 
     return f"""<article class="card deal{' is-top' if rank else ''}" data-verified="{e(v)}" data-saving="{saving or 0}" data-price="{price or 0}" data-text="{e(text)}">
-  <div class="media">{rank_html}{thumb(d, cat)}</div>
   <div class="content">
     {eyebrow}<h3>{e(d.get('item'))}</h3>
     <div class="priceline"><span class="price">{e(d.get('price'))}</span>{usual}{save}</div>
@@ -310,7 +302,7 @@ def category_sections(b):
             notes = f'<div class="cat-notes">{t}<ul>{"".join(f"<li>{e(n)}</li>" for n in c["notes"])}</ul></div>'
         cards = "".join(deal_card(d, cat=c["name"]) for d in c["deals"])
         out.append(f'<section id="{sid}" class="cat sec-sub" data-cat="{e(c["name"])}">'
-                   f'<div class="cat-head"><h3><span aria-hidden="true">{c["icon"]}</span> {e(c["name"])}</h3>'
+                   f'<div class="cat-head"><h3>{e(c["name"])}</h3>'
                    f'<span class="count">{len(c["deals"])}</span></div>{advice}'
                    f'<div class="grid">{cards}</div>{notes}</section>')
     nothing = ""
@@ -321,11 +313,11 @@ def category_sections(b):
             if c["advice"] or c["notes"]:
                 bits = ([e(c["advice"])] if c["advice"] else []) + [e(n) for n in c["notes"]]
                 extra = f'<span class="nd-note">{" · ".join(bits)}</span>'
-            items.append(f'<li><span aria-hidden="true">{c["icon"]}</span> <b>{e(c["name"])}</b>{extra}</li>')
+            items.append(f'<li><b>{e(c["name"])}</b>{extra}</li>')
         nothing = (f'<details class="nothing card"><summary>Nothing worth buying today in {len(empty)} '
                    f'categor{"y" if len(empty) == 1 else "ies"}</summary><ul>{"".join(items)}</ul></details>')
     toolbar = """<div class="toolbar" role="search">
-  <label class="search"><span aria-hidden="true">🔎</span><input type="search" id="q" placeholder="Search deals, brands, stores" aria-label="Search deals"></label>
+  <label class="search"><input type="search" id="q" placeholder="Search deals, brands, stores" aria-label="Search deals"></label>
   <label class="toggle"><input type="checkbox" id="verified-only"> Verified only</label>
   <label class="sort">Sort <select id="sort" aria-label="Sort deals"><option value="best">Best match</option><option value="saving">Biggest saving</option><option value="price">Lowest price</option></select></label>
 </div>"""
@@ -373,7 +365,7 @@ def nav_html(b):
         links.append('<a href="#stores">Stores</a>')
     for c in ordered_categories(b):
         if c["deals"]:
-            links.append(f'<a href="#c-{slug(c["name"])}">{c["icon"]} {e(c["label"])} <span>{len(c["deals"])}</span></a>')
+            links.append(f'<a href="#c-{slug(c["name"])}">{e(c["label"])} <span>{len(c["deals"])}</span></a>')
     if b.get("avoid"):
         links.append('<a href="#avoid">Avoid</a>')
     return f'<nav class="jump" aria-label="Sections"><div class="jump-inner">{"".join(links)}</div></nav>'
@@ -455,31 +447,18 @@ h1,h2,h3{letter-spacing:-.02em;line-height:1.2}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
 .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr))}
 .top-grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr))}
-#cat-list .grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,500px),1fr))}
-/* compact row cards for category lists */
-.deal:not(.is-top){flex-direction:row}
-.deal:not(.is-top) .media{width:132px;flex:none;border-bottom:0;background:transparent;padding:16px 0 16px 16px}
-.deal:not(.is-top) .thumb{height:116px;border-radius:12px;border:1px solid var(--line)}
-.deal:not(.is-top) .thumb img{padding:8px}
-.deal:not(.is-top) .thumb span{font-size:40px}
-.deal:not(.is-top) .price{font-size:24px}
+
 .empty{color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:var(--r);padding:18px;margin:0}
 .heads-up{margin:24px 0 0;background:var(--blue-soft);border-radius:var(--r-sm);padding:12px 16px}
 
 /* deal card */
 .deal{display:flex;flex-direction:column;overflow:hidden;transition:transform .15s ease,box-shadow .15s ease}
 .deal:hover{transform:translateY(-2px);box-shadow:0 2px 4px rgb(0 0 0/.04),0 12px 32px rgb(0 0 0/.08)}
-.media{position:relative;background:var(--surface-2);border-bottom:1px solid var(--line)}
-.thumb{height:168px;display:grid;place-items:center;background:#fff}
-.thumb img{max-width:100%;max-height:100%;object-fit:contain;padding:16px}
-.thumb span{display:none;font-size:56px;filter:saturate(.9)}
-.thumb.fallback{background:radial-gradient(120% 120% at 30% 20%,var(--accent-soft),var(--surface-2))}
-.thumb.fallback span{display:block}
-.rank{position:absolute;top:12px;left:12px;z-index:1;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:var(--bg);font-weight:800;font-size:15px}
-.is-top .rank{background:var(--accent);color:var(--accent-ink)}
+.rank{width:24px;height:24px;border-radius:50%;display:inline-grid;place-items:center;background:var(--accent);color:var(--accent-ink);font-weight:800;font-size:13px;letter-spacing:0}
+
 .content{padding:16px 18px 18px;display:flex;flex-direction:column;gap:10px;flex:1}
-.eyebrow{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--accent)}
-.eyebrow+h3{margin-top:-6px}
+.eyebrow{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--accent)}
+.eyebrow+h3{margin-top:-2px}
 .deal h3{margin:0;font-size:17px;font-weight:700;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .priceline{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
 .price{font-size:28px;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
@@ -574,14 +553,8 @@ footer{max-width:1120px;margin:0 auto;padding:24px 20px 40px;border-top:1px soli
 @media (max-width:560px){
   .wrap{padding:0 16px 48px}.jump-inner,.hero-inner,.masthead .bar{padding-left:16px;padding-right:16px}
   .sec{margin-top:36px}.sec-head h2{font-size:21px}
-  .thumb{height:140px}.price{font-size:24px}
-  .is-top .thumb{height:120px}
-  .deal:not(.is-top) .media{width:88px;padding:14px 0 14px 14px}
-  .deal:not(.is-top) .thumb{height:74px}
-  .deal:not(.is-top) .thumb span{font-size:30px}
-  .deal:not(.is-top) .content{padding:14px 14px 14px 12px}
-  .deal:not(.is-top) .price{font-size:21px}
-  .btn{padding:9px 14px}
+  .price{font-size:24px}
+  .is-top       .btn{padding:9px 14px}
   .toolbar{top:53px}.sort{flex:1}.toggle{flex:1}
   .rail{margin:0 -16px;padding:4px 16px 12px}
   .stores li{flex-wrap:wrap}.stores .btn{margin-left:42px}
