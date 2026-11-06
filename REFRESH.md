@@ -1,6 +1,6 @@
 # Daily refresh
 
-This site ("Taytino Black Friday Feed") is updated each morning by the Black Friday Deal Hunter scheduled task, right after it sends the email. It is a **public** website.
+This site is updated each morning by the "Taytino Black Friday Feed" scheduled task, right after it sends the email. It is a **public** website.
 
 ## Steps
 
