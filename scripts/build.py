@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Build the Hot Household Deals - Adelaide static site from data/briefs/*.json.
+"""Build the Taytino Black Friday Feed static site from data/briefs/*.json.
 
 Outputs:
-  index.html                 latest brief (top 3 + one tab per category)
+  index.html                 latest brief (top 5 + best stores + one tab per category)
   archive/index.html         list of past briefs
   archive/YYYY-MM-DD.html    one page per brief
   feed.json                  latest brief as JSON
@@ -22,10 +22,12 @@ ROOT = Path(__file__).resolve().parent.parent
 BRIEFS = ROOT / "data" / "briefs"
 ARCHIVE = ROOT / "archive"
 KEEP_DAYS = 30
-SITE = "Hot Household Deals - Adelaide"
-TAGLINE = "A daily, hand-checked digest of genuinely good deals from Australian retailers, with Adelaide delivery or pickup."
+SITE = "Taytino Black Friday Feed"
+TAGLINE = "A daily, price-history-checked feed of genuinely good deals from Australian retailers, with Adelaide delivery or pickup."
+MAX_TOP = 5
 
 ICONS = {
+    "BBQs": "🔥", "Office screens": "🖥️", "Office chairs": "💺", "Microwaves": "♨️",
     "TVs": "📺", "Air fryers": "🍟", "Coffee machines": "☕", "Cordless stick vacuums": "🧹",
     "Robotic pool cleaners": "🏊", "Lawn mowers": "🌱", "Robot vacuums": "🤖", "Heat pump dryers": "👕",
     "Slow cookers": "🍲", "Kettle and toaster packs": "🍞", "Large rugs": "🟫",
@@ -34,19 +36,23 @@ ICONS = {
 
 # Canonical categories, in tab order: (name used in JSON, short tab label)
 CATEGORIES = [
-    ("TVs", "TVs"),
-    ("Air fryers", "Air fryers"),
+    ("BBQs", "BBQs"),
     ("Coffee machines", "Coffee"),
-    ("Cordless stick vacuums", "Stick vacs"),
+    ("TVs", "TVs"),
+    ("Office screens", "Monitors"),
+    ("Office chairs", "Office chairs"),
     ("Robotic pool cleaners", "Pool cleaners"),
-    ("Lawn mowers", "Mowers"),
-    ("Robot vacuums", "Robot vacs"),
-    ("Heat pump dryers", "Dryers"),
-    ("Slow cookers", "Slow cookers"),
-    ("Kettle and toaster packs", "Kettle + toaster"),
     ("Large rugs", "Rugs"),
-    ("Outdoor dining settings", "Outdoor dining"),
+    ("Air fryers", "Air fryers"),
+    ("Microwaves", "Microwaves"),
+    ("Slow cookers", "Slow cookers"),
     ("Kitchenware", "Kitchenware"),
+    ("Cordless stick vacuums", "Stick vacs"),
+    ("Robot vacuums", "Robot vacs"),
+    ("Lawn mowers", "Mowers"),
+    ("Heat pump dryers", "Dryers"),
+    ("Kettle and toaster packs", "Kettle + toaster"),
+    ("Outdoor dining settings", "Outdoor dining"),
 ]
 CAT_NAMES = [c[0] for c in CATEGORIES]
 MAX_PER_CATEGORY = 3
@@ -117,6 +123,11 @@ def links_html(links):
 
 def badges(d):
     out = []
+    v = (d.get("verified") or "").strip().lower()
+    if v == "verified":
+        out.append('<span class="badge new">✅ Verified deal</span>')
+    elif v == "unverified":
+        out.append('<span class="badge prev">⚠️ Unverified price history</span>')
     s = (d.get("status") or "").strip()
     low = s.lower()
     if d.get("previously_posted"):
@@ -144,8 +155,17 @@ def deal_html(d, rank=None, show_cat=False, cat_name=None):
         meta.append(f"Usually {e(d['usual'])}")
     if d.get("saving"):
         meta.append(e(d["saving"]))
+    if d.get("lowest"):
+        meta.append(f"Lowest on record: {e(d['lowest'])}")
     if d.get("ends"):
         meta.append(f"Ends: {e(d['ends'])}")
+    extra = []
+    if d.get("reviews"):
+        extra.append(f"⭐ {e(d['reviews'])}")
+    if d.get("delivery"):
+        extra.append(f"🚚 {e(d['delivery'])}")
+    if d.get("price_source"):
+        extra.append(f"Price history: {e(d['price_source'])}")
     cat = f'<div class="cat">{e(d["category"])}</div>' if show_cat and d.get("category") else ""
     rank_html = f'<div class="rank">{rank}</div>' if rank else ""
     return f"""<article class="deal{' top' if rank else ''}">
@@ -154,6 +174,7 @@ def deal_html(d, rank=None, show_cat=False, cat_name=None):
     <div class="priceline"><span class="price">{e(d.get('price'))}</span><span class="retailer">@ {e(d.get('retailer'))}</span></div>
     {badges(d)}
     {f'<div class="meta">{" · ".join(meta)}</div>' if meta else ''}
+    {f'<div class="meta">{"<br>".join(extra)}</div>' if extra else ''}
     {f'<p>{e(d.get("why"))}</p>' if d.get('why') else ''}
     {links_html(d.get('links'))}
   </div>
@@ -161,13 +182,22 @@ def deal_html(d, rank=None, show_cat=False, cat_name=None):
 
 
 def top_panel(b):
-    inner = ['<h2>🔥 Top 3 deals today</h2>']
+    inner = [f'<h2>🔥 Top {MAX_TOP} deals today</h2>']
     if b["top"]:
         inner.append('<div class="grid">')
-        inner += [deal_html(d, i + 1, show_cat=True) for i, d in enumerate(b["top"][:3])]
+        inner += [deal_html(d, i + 1, show_cat=True) for i, d in enumerate(b["top"][:MAX_TOP])]
         inner.append("</div>")
     else:
         inner.append('<p class="empty">Nothing met the bar today.</p>')
+    avoid = b.get("avoid", [])
+    if avoid:
+        inner.append('<h2>🚫 Avoid: fake or inflated discounts</h2><ul class="notes avoid">')
+        for a in avoid:
+            if isinstance(a, dict):
+                inner.append(f'<li><b>{e(a.get("item"))}</b>{(" @ " + e(a["retailer"])) if a.get("retailer") else ""}: {e(a.get("why"))}</li>')
+            else:
+                inner.append(f"<li>{e(a)}</li>")
+        inner.append("</ul>")
     return inner
 
 
@@ -175,8 +205,8 @@ def tabs_html(b):
     """Returns (tab bar html, panels html). The first tab is Top 3."""
     by_name = {c.get("name"): c for c in b.get("categories", [])}
     cats = list(CATEGORIES) + [(n, n) for n in by_name if n not in CAT_NAMES]
-    tabs = ['<button role="tab" id="tab-top" aria-controls="p-top" aria-selected="true" class="has hot" '
-            'data-tab="top">🔥 Top 3</button>']
+    tabs = [f'<button role="tab" id="tab-top" aria-controls="p-top" aria-selected="true" class="has hot" '
+            'data-tab="top">🔥 Top {MAX_TOP}</button>']
     panels = [f'<section role="tabpanel" id="p-top" aria-labelledby="tab-top" class="panel hero">'
               f'{"".join(top_panel(b))}</section>']
     for name, label in cats:
@@ -189,6 +219,8 @@ def tabs_html(b):
         tabs.append(f'<button role="tab" id="tab-{sid}" aria-controls="p-{sid}" aria-selected="{"true" if sel else "false"}"'
                     f' class="{"has" if deals else "none"}" data-tab="{sid}">{e(label)}{count}</button>')
         inner = [f'<h2>{ICONS.get(name, "🛒")} {e(name)}</h2>']
+        if c.get("advice"):
+            inner.append(f'<p class="advice"><b>Buy now or wait?</b> {e(c["advice"])}</p>')
         inner += [deal_html(d, cat_name=name) for d in deals]
         if not deals:
             inner.append('<p class="empty">No deals met the bar today.</p>')
@@ -242,12 +274,26 @@ def sales_html(b):
             + "".join(sale_html(s, today) for s in b["sales"]) + "</ul></section>")
 
 
+def stores_html(b):
+    stores = b.get("stores", [])
+    if not stores:
+        return ""
+    rows = []
+    for i, s in enumerate(stores[:5]):
+        why = f'<p>{e(s["why"])}</p>' if s.get("why") else ""
+        rows.append(f'<li class="sale"><div class="srow store"><span class="srank">{i + 1}</span>'
+                    f'<div class="sbody"><b>{e(s.get("name"))}</b>{why}'
+                    f'{links_html(s.get("links"))}</div></div></li>')
+    return ('<section class="sales-strip"><h2>🏬 Best stores right now</h2><ul class="sales">'
+            + "".join(rows) + "</ul></section>")
+
+
 def brief_html(b, nav):
     bar, panels = tabs_html(b)
     parts = [bar,
              f'<section class="summary-box"><div class="sumhead"><h2>Summary · {e(b["display_date"])}</h2>'
              f'<span class="nav">{nav}</span></div><p class="summary">{e(b["summary"])}</p></section>',
-             sales_html(b), panels]
+             stores_html(b), sales_html(b), panels]
     for n in b.get("notes", []):
         parts.append(f'<p class="note"><b>{e(n.get("label"))}:</b> {e(n.get("text"))}</p>')
     return "\n".join(parts)
@@ -347,6 +393,14 @@ details[open] summary.srow::after{content:"▴"}
 .chip.soon{background:var(--blue-soft);color:var(--blue)}
 .chip.rumour{background:var(--amber-soft);color:var(--amber)}
 
+.advice{background:var(--blue-soft);color:var(--ink);border-radius:12px;padding:10px 14px;margin:0 0 12px;font-size:15px}
+.store{align-items:flex-start;padding:10px 12px}
+.srank{flex:none;width:24px;height:24px;border-radius:50%;background:var(--hot);color:#fff;display:grid;place-items:center;font-weight:800;font-size:12px}
+.sbody{min-width:0;flex:1}
+.sbody b{white-space:normal}
+.sbody p{margin:2px 0 0;color:var(--muted);font-size:14px}
+.sbody .links{margin-top:6px}
+.avoid li b{color:var(--ink)}
 footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
 """
 
