@@ -2,217 +2,372 @@
 <html lang="en-AU" class="nojs"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Taytino Black Friday Feed – Today&#x27;s best deals</title>
-<meta name="description" content="A daily, price-history-checked feed of genuinely good deals from Australian retailers, with Adelaide delivery or pickup.">
+<meta name="description" content="Genuinely good deals from Australian retailers, price-history checked every morning. Adelaide delivery or pickup.">
+<meta name="theme-color" content="#0c0c0e">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
 <style>
-:root{--bg:#fbf8f5;--card:#fff;--ink:#1c1917;--muted:#6b6460;--line:#ebe4de;--hot:#d9480f;--hot-soft:#fff0e8;--ok:#2b8a3e;--ok-soft:#ebfbee;--blue:#1864ab;--blue-soft:#e7f1fb;--violet:#6741d9;--violet-soft:#f1edff;--amber:#8a5a00;--amber-soft:#fff6db}
-@media (prefers-color-scheme:dark){:root{--bg:#141110;--card:#1f1b19;--ink:#f2ece8;--muted:#a59c96;--line:#332c28;--hot:#ff8a4c;--hot-soft:#3a2117;--ok:#69db7c;--ok-soft:#1b2e1f;--blue:#74c0fc;--blue-soft:#172634;--violet:#b197fc;--violet-soft:#251f3a;--amber:#ffd43b;--amber-soft:#2f2712}}
+:root{
+  --bg:#f6f6f4;--surface:#fff;--surface-2:#f0efec;--ink:#18181b;--ink-2:#3f3f46;--muted:#71717a;--line:#e4e4e0;
+  --accent:#ea580c;--accent-ink:#fff;--accent-soft:#fff1e7;
+  --ok:#15803d;--ok-soft:#e8f6ec;--warn:#a16207;--warn-soft:#fdf5d9;--violet:#6d28d9;--violet-soft:#f1ebff;--blue:#1d4ed8;--blue-soft:#e9effe;
+  --hero:#0c0c0e;--hero-ink:#fafafa;--hero-muted:#a1a1aa;
+  --r:16px;--r-sm:10px;--shadow:0 1px 2px rgb(0 0 0/.04),0 4px 16px rgb(0 0 0/.04);
+  color-scheme:light dark}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#0f0f11;--surface:#18181b;--surface-2:#202024;--ink:#f4f4f5;--ink-2:#d4d4d8;--muted:#a1a1aa;--line:#2a2a2f;
+  --accent:#fb923c;--accent-ink:#1a0d03;--accent-soft:#2b1a0e;
+  --ok:#4ade80;--ok-soft:#10261a;--warn:#facc15;--warn-soft:#2a2410;--violet:#a78bfa;--violet-soft:#211a36;--blue:#93b4ff;--blue-soft:#172040;
+  --hero:#000;--shadow:none}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-a{color:var(--hot)}
-.wrap{max-width:820px;margin:0 auto;padding:0 16px 48px}
-header{padding:24px 0 12px}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
-.brand .flame{font-size:28px}
-.brand b{font-size:24px;letter-spacing:-.02em}
-.tag{color:var(--muted);margin:6px 0 0;font-size:14px}
-.tabbar{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);margin:0 -16px;padding:10px 0 8px;border-bottom:1px solid var(--line)}
-.summary-box{margin-top:18px}
-.sumhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
-.sumhead h2{margin:0 0 6px;color:var(--ink)}
-.sumhead .nav{font-size:14px}
-.summary{font-size:17px;margin:0}
-h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:32px 0 12px}
-.panel{scroll-margin-top:64px;margin-top:22px}
-.panel h2{margin-top:0}
-.hero{background:linear-gradient(180deg,var(--hot-soft),transparent);border-radius:18px;padding:16px 14px 14px;margin:22px -14px 0}
-.hero h2{color:var(--hot);font-size:15px}
-.grid{display:grid;gap:12px}
-.deal{display:flex;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:12px}
-.grid .deal{margin:0}
-.deal.top{border-color:color-mix(in srgb,var(--hot) 40%,var(--line));box-shadow:0 2px 10px color-mix(in srgb,var(--hot) 10%,transparent)}
-.deal.top h3{font-size:19px}
-.rank{flex:none;width:36px;height:36px;border-radius:50%;background:var(--hot);color:#fff;display:grid;place-items:center;font-weight:800}
-.body{min-width:0;flex:1}
-.cat{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
-.deal h3{margin:2px 0 6px;font-size:17px;line-height:1.3}
-.priceline{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px}
-.price{font-size:20px;font-weight:800;color:var(--hot)}
-.deal.top .price{font-size:24px}
-.retailer{color:var(--muted)}
-.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
-.badge{font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px}
-.badge.new{background:var(--ok-soft);color:var(--ok)}
-.badge.still{background:var(--blue-soft);color:var(--blue)}
-.badge.drop{background:var(--hot-soft);color:var(--hot)}
-.badge.prev{background:var(--amber-soft);color:var(--amber)}
-.badge.stretch{background:var(--violet-soft);color:var(--violet)}
-.meta{font-size:14px;color:var(--muted);margin-top:6px}
-.deal p{margin:8px 0 0;font-size:15px}
-.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-.links a{font-size:14px;text-decoration:none;border:1px solid var(--line);padding:4px 10px;border-radius:8px;background:var(--bg)}
-.tabs{display:flex;gap:6px;overflow-x:auto;padding:0 16px;scrollbar-width:none}
-.tabs::-webkit-scrollbar{display:none}
-.tabs button{flex:none;font:inherit;font-size:14px;font-weight:600;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:7px 12px;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:6px}
-.tabs button.none{color:var(--muted);font-weight:500}
-.tabs button[aria-selected=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.tabs button.hot{border-color:var(--hot);color:var(--hot)}
-.tabs button.hot[aria-selected=true]{background:var(--hot);color:#fff}
-.tabs .count{font-size:12px;background:var(--hot);color:#fff;border-radius:999px;padding:0 7px;line-height:18px}
-.notes-title{font-weight:600;margin:14px 0 6px;font-size:15px}
-@media (min-width:700px){.tabs{flex-wrap:wrap;overflow:visible}.tabbar{margin:0;padding:10px 0 8px}.tabs{padding:0}}
-.nojs .tabbar{display:none}
-.nojs .panel[hidden]{display:block}
-.notes{padding-left:20px;margin:0}
-.notes li{margin-bottom:8px}
-.panel .notes{margin-top:8px;color:var(--muted);font-size:15px}
-.note{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:12px 0}
-.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);border-radius:12px;padding:14px;margin:0 0 12px}
-.archive li{margin:6px 0}
-.thumb{flex:none;width:72px;height:72px;border-radius:12px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden}
-.deal.top .thumb{width:96px;height:96px}
-.thumb img{width:100%;height:100%;object-fit:contain;padding:4px}
-.thumb span{display:none;font-size:34px}
-.deal.top .thumb span{font-size:44px}
-.thumb.fallback{background:var(--hot-soft)}
+html{scroll-behavior:smooth;scroll-padding-top:72px;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-feature-settings:"cv11","ss01";-webkit-font-smoothing:antialiased}
+a{color:inherit}
+h1,h2,h3{letter-spacing:-.02em;line-height:1.2}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px 64px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+
+/* masthead + hero */
+.masthead{background:var(--hero);color:var(--hero-ink)}
+.masthead .bar{max-width:1120px;margin:0 auto;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:17px;letter-spacing:-.02em}
+.logo{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(135deg,#f97316,#e11d48);color:#fff;font-size:16px;font-weight:900}
+.masthead .archive-link{color:var(--hero-muted);font-size:14px;text-decoration:none}
+.masthead .archive-link:hover{color:var(--hero-ink)}
+.hero{background:var(--hero);color:var(--hero-ink);padding:8px 0 40px}
+.hero-inner{max-width:1120px;margin:0 auto;padding:0 20px}
+.dateline{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;color:var(--hero-muted);font-size:14px;font-weight:500}
+.dateline a{color:var(--hero-muted);text-decoration:none;border-bottom:1px solid #3f3f46}
+.dateline a:hover{color:var(--hero-ink)}
+.live-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgb(34 197 94/.2)}
+.headline{font-size:clamp(22px,3.2vw,32px);font-weight:700;letter-spacing:-.025em;line-height:1.25;margin:12px 0 20px;max-width:30ch;text-wrap:balance}
+.stats{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.stats li{background:#1c1c20;border:1px solid #2a2a30;border-radius:999px;padding:6px 14px;font-size:14px;color:var(--hero-muted)}
+.stats b{color:var(--hero-ink);font-weight:700}
+.tagline{color:var(--hero-muted);font-size:14px;margin:18px 0 0;max-width:60ch}
+
+/* jump nav */
+.jump{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:saturate(1.6) blur(12px);-webkit-backdrop-filter:saturate(1.6) blur(12px);border-bottom:1px solid var(--line)}
+.jump-inner{max-width:1120px;margin:0 auto;padding:10px 20px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;mask-image:linear-gradient(90deg,#000 92%,transparent)}
+.jump-inner::-webkit-scrollbar{display:none}
+.jump a{flex:none;text-decoration:none;font-size:14px;font-weight:600;color:var(--ink-2);padding:7px 12px;border-radius:999px;border:1px solid transparent;white-space:nowrap}
+.jump a span{font-size:12px;color:var(--muted);margin-left:2px}
+.jump a:hover{background:var(--surface-2)}
+.jump a.active{background:var(--ink);color:var(--bg)}
+.jump a.active span{color:inherit;opacity:.7}
+
+/* sections */
+.sec{margin-top:48px}
+.sec-head{margin-bottom:16px}
+.sec-head h2{font-size:24px;margin:0}
+.sec-head p{margin:4px 0 0;color:var(--muted);font-size:15px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr))}
+.top-grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr))}
+#cat-list .grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,500px),1fr))}
+/* compact row cards for category lists */
+.deal:not(.is-top){flex-direction:row}
+.deal:not(.is-top) .media{width:132px;flex:none;border-bottom:0;background:transparent;padding:16px 0 16px 16px}
+.deal:not(.is-top) .thumb{height:116px;border-radius:12px;border:1px solid var(--line)}
+.deal:not(.is-top) .thumb img{padding:8px}
+.deal:not(.is-top) .thumb span{font-size:40px}
+.deal:not(.is-top) .price{font-size:24px}
+.empty{color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:var(--r);padding:18px;margin:0}
+.heads-up{margin:24px 0 0;background:var(--blue-soft);border-radius:var(--r-sm);padding:12px 16px}
+
+/* deal card */
+.deal{display:flex;flex-direction:column;overflow:hidden;transition:transform .15s ease,box-shadow .15s ease}
+.deal:hover{transform:translateY(-2px);box-shadow:0 2px 4px rgb(0 0 0/.04),0 12px 32px rgb(0 0 0/.08)}
+.media{position:relative;background:var(--surface-2);border-bottom:1px solid var(--line)}
+.thumb{height:168px;display:grid;place-items:center;background:#fff}
+.thumb img{max-width:100%;max-height:100%;object-fit:contain;padding:16px}
+.thumb span{display:none;font-size:56px;filter:saturate(.9)}
+.thumb.fallback{background:radial-gradient(120% 120% at 30% 20%,var(--accent-soft),var(--surface-2))}
 .thumb.fallback span{display:block}
-@media (max-width:480px){.deal{flex-wrap:wrap}.deal.top .thumb,.thumb{width:64px;height:64px}.deal.top .thumb span,.thumb span{font-size:30px}.deal .body{flex-basis:100%}.deal.top .body{flex-basis:100%}}
-.sales-strip h2{margin:22px 0 8px}
-.sales{list-style:none;margin:0;padding:0;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
-.sale+.sale{border-top:1px solid var(--line)}
-.srow{display:flex;align-items:center;gap:8px;padding:8px 12px;font-size:14px;min-width:0}
-summary.srow{cursor:pointer;list-style:none}
-summary.srow::-webkit-details-marker{display:none}
-summary.srow::after{content:"▾";color:var(--muted);font-size:12px;margin-left:2px}
-details[open] summary.srow::after{content:"▴"}
-.srow b{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600}
-.srow .when{color:var(--muted);font-size:12px;white-space:nowrap}
-.srow .chip{flex:none;text-align:center}
-.srow .chip:first-child{min-width:104px}
-.sale details p{margin:0;padding:0 12px 4px;font-size:14px;color:var(--muted)}
-.sale details .links{margin:4px 12px 10px}
-@media (max-width:480px){.srow .when{display:none}.srow .chip:first-child{min-width:92px}}
-.chip{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:2px 8px;border-radius:999px}
-.chip.live{background:var(--ok-soft);color:var(--ok)}
-.chip.urgent{background:var(--hot);color:#fff}
-.chip.soon{background:var(--blue-soft);color:var(--blue)}
-.chip.rumour{background:var(--amber-soft);color:var(--amber)}
+.rank{position:absolute;top:12px;left:12px;z-index:1;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:var(--bg);font-weight:800;font-size:15px}
+.is-top .rank{background:var(--accent);color:var(--accent-ink)}
+.content{padding:16px 18px 18px;display:flex;flex-direction:column;gap:10px;flex:1}
+.eyebrow{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--accent)}
+.eyebrow+h3{margin-top:-6px}
+.deal h3{margin:0;font-size:17px;font-weight:700;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.priceline{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.price{font-size:28px;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.was{color:var(--muted);font-size:15px}
+.save{font-size:13px;font-weight:700;color:var(--ok);background:var(--ok-soft);padding:2px 8px;border-radius:6px}
+.pills{display:flex;flex-wrap:wrap;gap:6px}
+.pill{font-size:12px;font-weight:600;padding:3px 9px;border-radius:999px;background:var(--surface-2);color:var(--ink-2);white-space:nowrap}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}
+.pill.warn{background:var(--warn-soft);color:var(--warn)}
+.pill.hot{background:var(--accent-soft);color:var(--accent)}
+.pill.new{background:var(--blue-soft);color:var(--blue)}
+.pill.violet{background:var(--violet-soft);color:var(--violet)}
+.pill.muted{color:var(--muted)}
+.facts{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:14px;color:var(--muted)}
+.why{margin:0;font-size:15px;color:var(--ink-2)}
+.more{font-size:14px;border-top:1px solid var(--line);padding-top:8px}
+.more summary{cursor:pointer;font-weight:600;color:var(--ink-2);list-style:none;display:flex;align-items:center;gap:6px}
+.more summary::-webkit-details-marker{display:none}
+.more summary::after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-2px);margin-left:2px;transition:transform .15s}
+.more[open] summary::after{transform:rotate(-135deg) translateY(-1px)}
+.more dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:8px 0 0}
+.more dt{color:var(--muted)}
+.more dd{margin:0}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:4px}
+.btn{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-weight:700;font-size:14px;padding:10px 16px;border-radius:var(--r-sm);background:var(--ink);color:var(--bg);border:1px solid var(--ink)}
+.btn:hover{opacity:.88}
+.is-top .btn:not(.ghost){background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{background:var(--surface-2);opacity:1}
+.btn.sm{padding:6px 12px;font-size:13px}
 
-.advice{background:var(--blue-soft);color:var(--ink);border-radius:12px;padding:10px 14px;margin:0 0 12px;font-size:15px}
-.store{align-items:flex-start;padding:10px 12px}
-.srank{flex:none;width:24px;height:24px;border-radius:50%;background:var(--hot);color:#fff;display:grid;place-items:center;font-weight:800;font-size:12px}
-.sbody{min-width:0;flex:1}
-.sbody b{white-space:normal}
-.sbody p{margin:2px 0 0;color:var(--muted);font-size:14px}
-.sbody .links{margin-top:6px}
-.avoid li b{color:var(--ink)}
-footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+/* sales rail */
+.rail{list-style:none;margin:0 -20px;padding:4px 20px 12px;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(240px,280px);gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin}
+.sale{padding:16px;scroll-snap-align:start;display:flex;flex-direction:column;gap:6px}
+.sale-top{display:flex;gap:6px;flex-wrap:wrap}
+.sale h3{margin:4px 0 0;font-size:16px}
+.sale .when{font-size:13px;color:var(--muted);font-weight:600}
+.sale p{margin:0;font-size:14px;color:var(--ink-2)}
+.sale-links{margin-top:auto;padding-top:4px;display:flex;gap:10px;font-size:14px;font-weight:600}
+.sale-links a{color:var(--accent);text-decoration:none}
+.status{font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px}
+.status.live{background:var(--ok-soft);color:var(--ok)}
+.status.urgent{background:var(--accent);color:var(--accent-ink)}
+.status.soon{background:var(--blue-soft);color:var(--blue)}
+@media (min-width:1000px){.rail{margin:0;padding:4px 0 12px;grid-auto-flow:row;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));overflow:visible}}
+
+/* stores */
+.stores{list-style:none;margin:0;padding:4px 0}
+.stores li{display:flex;align-items:center;gap:14px;padding:14px 18px}
+.stores li+li{border-top:1px solid var(--line)}
+.srank{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--surface-2);font-weight:800;font-size:14px}
+.stores li:first-child .srank{background:var(--accent);color:var(--accent-ink)}
+.sinfo{flex:1;min-width:0}
+.sinfo p{margin:2px 0 0;color:var(--muted);font-size:14px}
+
+/* toolbar + categories */
+.toolbar{position:sticky;top:57px;z-index:5;display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:12px 0;margin-bottom:8px;background:var(--bg)}
+.search{flex:1 1 260px;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm);padding:0 12px}
+.search input{flex:1;border:0;background:transparent;font:inherit;font-size:15px;padding:10px 0;color:var(--ink);outline:none;min-width:0}
+.search:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.toggle,.sort{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm);padding:9px 12px;cursor:pointer}
+.toggle input{accent-color:var(--accent);width:16px;height:16px}
+.sort select{font:inherit;border:0;background:transparent;color:var(--ink);font-weight:600;cursor:pointer}
+.cat{margin-top:28px}
+.cat-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.cat-head h3{margin:0;font-size:19px}
+.count{font-size:12px;font-weight:700;background:var(--surface-2);color:var(--muted);border-radius:999px;padding:2px 8px}
+.advice{margin:0 0 12px;font-size:14px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--r-sm);padding:10px 14px}
+.cat-notes{margin-top:12px;font-size:14px;color:var(--muted)}
+.cat-notes ul{margin:4px 0 0;padding-left:18px}
+.nothing{margin-top:28px;padding:0}
+.nothing summary{cursor:pointer;padding:14px 18px;font-weight:600;color:var(--ink-2)}
+.nothing ul{list-style:none;margin:0;padding:0 18px 14px;display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.nothing li{font-size:14px}
+.nd-note{display:block;color:var(--muted);font-size:13px;margin-left:24px}
+
+/* avoid */
+.avoid{list-style:none;margin:0;padding:4px 0}
+.avoid li{padding:12px 18px}
+.avoid li+li{border-top:1px solid var(--line)}
+.avoid p{margin:2px 0 0;color:var(--muted);font-size:14px}
+.muted{color:var(--muted)}
+
+/* archive */
+.archive-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.archive-list a{display:block;padding:14px 18px;text-decoration:none}
+.archive-list b{display:block}
+.archive-list span{color:var(--muted);font-size:14px}
+
+footer{max-width:1120px;margin:0 auto;padding:24px 20px 40px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 24px;justify-content:space-between}
+
+@media (max-width:560px){
+  .wrap{padding:0 16px 48px}.jump-inner,.hero-inner,.masthead .bar{padding-left:16px;padding-right:16px}
+  .sec{margin-top:36px}.sec-head h2{font-size:21px}
+  .thumb{height:140px}.price{font-size:24px}
+  .is-top .thumb{height:120px}
+  .deal:not(.is-top) .media{width:88px;padding:14px 0 14px 14px}
+  .deal:not(.is-top) .thumb{height:74px}
+  .deal:not(.is-top) .thumb span{font-size:30px}
+  .deal:not(.is-top) .content{padding:14px 14px 14px 12px}
+  .deal:not(.is-top) .price{font-size:21px}
+  .btn{padding:9px 14px}
+  .toolbar{top:53px}.sort{flex:1}.toggle{flex:1}
+  .rail{margin:0 -16px;padding:4px 16px 12px}
+  .stores li{flex-wrap:wrap}.stores .btn{margin-left:42px}
+}
+.nojs .toolbar{display:none}
 </style>
-</head><body><div class="wrap">
-<header><a class="brand" href="index.html"><span class="flame">🔥</span><b>Taytino Black Friday Feed</b></a>
-<p class="tag">A daily, price-history-checked feed of genuinely good deals from Australian retailers, with Adelaide delivery or pickup.</p></header>
-<nav class="tabbar"><div class="tabs" role="tablist" aria-label="Deal categories"><button role="tab" id="tab-top" aria-controls="p-top" aria-selected="true" class="has hot" data-tab="top">🔥 Top {MAX_TOP}</button><button role="tab" id="tab-bbqs" aria-controls="p-bbqs" aria-selected="false" class="none" data-tab="bbqs">BBQs</button><button role="tab" id="tab-coffee-machines" aria-controls="p-coffee-machines" aria-selected="false" class="has" data-tab="coffee-machines">Coffee<span class="count">1</span></button><button role="tab" id="tab-tvs" aria-controls="p-tvs" aria-selected="false" class="has" data-tab="tvs">TVs<span class="count">1</span></button><button role="tab" id="tab-office-screens" aria-controls="p-office-screens" aria-selected="false" class="none" data-tab="office-screens">Monitors</button><button role="tab" id="tab-office-chairs" aria-controls="p-office-chairs" aria-selected="false" class="none" data-tab="office-chairs">Office chairs</button><button role="tab" id="tab-robotic-pool-cleaners" aria-controls="p-robotic-pool-cleaners" aria-selected="false" class="none" data-tab="robotic-pool-cleaners">Pool cleaners</button><button role="tab" id="tab-large-rugs" aria-controls="p-large-rugs" aria-selected="false" class="none" data-tab="large-rugs">Rugs</button><button role="tab" id="tab-air-fryers" aria-controls="p-air-fryers" aria-selected="false" class="none" data-tab="air-fryers">Air fryers</button><button role="tab" id="tab-microwaves" aria-controls="p-microwaves" aria-selected="false" class="none" data-tab="microwaves">Microwaves</button><button role="tab" id="tab-slow-cookers" aria-controls="p-slow-cookers" aria-selected="false" class="none" data-tab="slow-cookers">Slow cookers</button><button role="tab" id="tab-kitchenware" aria-controls="p-kitchenware" aria-selected="false" class="none" data-tab="kitchenware">Kitchenware</button><button role="tab" id="tab-cordless-stick-vacuums" aria-controls="p-cordless-stick-vacuums" aria-selected="false" class="none" data-tab="cordless-stick-vacuums">Stick vacs</button><button role="tab" id="tab-robot-vacuums" aria-controls="p-robot-vacuums" aria-selected="false" class="has" data-tab="robot-vacuums">Robot vacs<span class="count">1</span></button><button role="tab" id="tab-lawn-mowers" aria-controls="p-lawn-mowers" aria-selected="false" class="has" data-tab="lawn-mowers">Mowers<span class="count">1</span></button><button role="tab" id="tab-heat-pump-dryers" aria-controls="p-heat-pump-dryers" aria-selected="false" class="none" data-tab="heat-pump-dryers">Dryers</button><button role="tab" id="tab-kettle-and-toaster-packs" aria-controls="p-kettle-and-toaster-packs" aria-selected="false" class="none" data-tab="kettle-and-toaster-packs">Kettle + toaster</button><button role="tab" id="tab-outdoor-dining-settings" aria-controls="p-outdoor-dining-settings" aria-selected="false" class="none" data-tab="outdoor-dining-settings">Outdoor dining</button></div></nav>
-<section class="summary-box"><div class="sumhead"><h2>Summary · Fri 6 Nov 2026</h2><span class="nav"><a href="archive/index.html">Past days</a></span></div><p class="summary">One new deal today: a cashback stack brings the Breville Barista Express to about $490. Yesterday&#x27;s robot vacuum and TV deals are still listed.</p></section>
-
-<section class="sales-strip"><h2>📅 Sales in the next 7 days</h2><ul class="sales"><li class="sale"><details><summary class="srow"><span class="chip live">Ends in 24 days</span><b>IKEA Black Friday</b><span class="when">Mon 30 Nov</span></summary><p>10% off almost everything, in store and online. Covers rugs and outdoor furniture, not appliances or kitchens.</p><div class="links"><a href="https://www.ozbargain.com.au/node/981671" rel="noopener" target="_blank">OzBargain ↗</a></div></details></li><li class="sale"><details><summary class="srow"><span class="chip urgent">Ends in 2 days</span><b>Costco Barista Express deal</b><span class="when">Sun 8 Nov</span></summary><p>Members-only $549 price on the stainless BES875 ends soon.</p></details></li><li class="sale"><details><summary class="srow"><span class="chip soon">In 3 days</span><b>ShopBack mystery cashback</b><span class="chip rumour">Rumour</span><span class="when">Mon 9 Nov</span></summary><p>OzBargain commenters expect a &quot;mystery cashback&quot; event. Not confirmed.</p></details></li><li class="sale"><details><summary class="srow"><span class="chip soon">In 5 days</span><b>Singles Day (11.11)</b><span class="when">Wed 11 Nov</span></summary><p>One-day online sale across many retailers.</p></details></li><li class="sale"><details><summary class="srow"><span class="chip live">Live now</span><b>Early Black Friday</b><span class="when"></span></summary><p>Live now at The Good Guys, 99 Bikes and others. Black Friday itself is 27 Nov.</p></details></li></ul></section>
-<section role="tabpanel" id="p-top" aria-labelledby="tab-top" class="panel hero"><h2>🔥 Top 5 deals today</h2><div class="grid"><article class="deal top">
-  <div class="rank">1</div><div class="thumb fallback"><span>🤖</span></div><div class="body">
-    <div class="cat">Robot vacuums</div><h3>Roborock Qrevo Curv 2 Flow (robot vacuum + mop, self-empty dock)</h3>
-    <div class="priceline"><span class="price">$999</span><span class="retailer">@ Roborock AU</span></div>
-    <div class="badges"><span class="badge prev">Previously posted · first Tue 3 Nov 2026</span></div>
-    <div class="meta">Usually $1,799 · About 22% below the best street price</div>
-    
-    <p>Covers both vacuuming and mopping, and the dock empties itself.</p>
-    <div class="links"><a href="https://roborockstore.com.au/products/qrevo-curv-2-flow" rel="noopener" target="_blank">Roborock AU ↗</a></div>
+</head><body>
+<header class="masthead"><div class="bar">
+  <a class="brand" href="index.html"><span class="logo" aria-hidden="true">T</span>Taytino Black Friday Feed</a>
+  <a class="archive-link" href="archive/index.html">Past days</a>
+</div></header>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="dateline"><span class="live-dot" aria-hidden="true"></span>Updated Fri 6 Nov 2026</div>
+    <p class="headline">One new deal today: a cashback stack brings the Breville Barista Express to about $490. Yesterday&#x27;s robot vacuum and TV deals are still listed.</p>
+    <ul class="stats"><li><b>4</b> deals</li><li><b>4</b> of 17 categories</li><li><b>5</b> sales on</li></ul>
   </div>
-</article><article class="deal top">
-  <div class="rank">2</div><div class="thumb fallback"><span>☕</span></div><div class="body">
-    <div class="cat">Coffee machines</div><h3>Breville Barista Express (BES870)</h3>
-    <div class="priceline"><span class="price">~$490 after cashback</span><span class="retailer">@ Woolworths Everyday Market</span></div>
-    <div class="badges"><span class="badge new">new</span></div>
-    <div class="meta">Usually $585–$599 · About 17% below usual · Ends: No end date posted</div>
+</section>
+<nav class="jump" aria-label="Sections"><div class="jump-inner"><a href="#top">Top deals</a><a href="#sales">What's on</a><a href="#c-coffee-machines">☕ Coffee <span>1</span></a><a href="#c-tvs">📺 TVs <span>1</span></a><a href="#c-robot-vacuums">🤖 Robot vacs <span>1</span></a><a href="#c-lawn-mowers">🌱 Mowers <span>1</span></a></div></nav>
+<main class="wrap">
+<section id="top" class="sec"><div class="sec-head"><h2>Today's top 3</h2><p>The best verified deals across every category.</p></div><div class="grid top-grid"><article class="card deal is-top" data-verified="" data-saving="22" data-price="999.0" data-text="roborock qrevo curv 2 flow robot vacuum mop self empty dock roborock au covers both vacuuming and mopping and the dock empties itself robot vacuums">
+  <div class="media"><span class="rank" aria-label="Rank 1">1</span><div class="thumb fallback"><span aria-hidden="true">🤖</span></div></div>
+  <div class="content">
+    <div class="eyebrow">Robot vacuums</div><h3>Roborock Qrevo Curv 2 Flow (robot vacuum + mop, self-empty dock)</h3>
+    <div class="priceline"><span class="price">$999</span><s class="was">$1,799</s><span class="save">About 22% below the best street price</span></div>
+    <div class="pills"><span class="pill muted">Listed since Tue 3 Nov 2026</span></div>
+    <div class="facts"><span>🏬 Roborock AU</span></div>
+    <p class="why">Covers both vacuuming and mopping, and the dock empties itself.</p>
     
-    <p>Listed at $599. TopCashback pays 20% back on orders over $150.01 with no cap, calculated on the pre-GST price (about $545), so roughly $109 back. Built-in grinder and a proper steam wand. Cashback arrives later and only pays if your click is tracked; check the listing is the BES870 sold by Woolworths.</p>
-    <div class="links"><a href="https://www.ozbargain.com.au/node/981670" rel="noopener" target="_blank">TopCashback offer ↗</a><a href="https://www.ozbargain.com.au/node/981537" rel="noopener" target="_blank">Deal thread ↗</a></div>
+    <div class="actions"><a class="btn" href="https://roborockstore.com.au/products/qrevo-curv-2-flow" rel="noopener" target="_blank">View at Roborock AU<span aria-hidden="true">↗</span></a></div>
   </div>
-</article><article class="deal top">
-  <div class="rank">3</div><div class="thumb fallback"><span>📺</span></div><div class="body">
-    <div class="cat">TVs</div><h3>Hisense 55&quot; Q6SAU QLED 4K (LED panel)</h3>
-    <div class="priceline"><span class="price">$549.99 delivered</span><span class="retailer">@ Costco</span></div>
-    <div class="badges"><span class="badge prev">Previously posted · first Sat 31 Oct 2026</span></div>
-    <div class="meta">About 25% below other retailers · Ends: 15 Nov</div>
+</article><article class="card deal is-top" data-verified="" data-saving="17" data-price="490.0" data-text="breville barista express bes870 woolworths everyday market listed at 599 topcashback pays 20 back on orders over 150 01 with no cap calculated on the pre gst price about 545 so roughly 109 back built in grinder and a proper steam wand cashback arrives later and only pays if your click is tracked check the listing is the bes870 sold by woolworths coffee machines">
+  <div class="media"><span class="rank" aria-label="Rank 2">2</span><div class="thumb fallback"><span aria-hidden="true">☕</span></div></div>
+  <div class="content">
+    <div class="eyebrow">Coffee machines</div><h3>Breville Barista Express (BES870)</h3>
+    <div class="priceline"><span class="price">~$490 after cashback</span><s class="was">$585–$599</s><span class="save">About 17% below usual</span></div>
+    <div class="pills"><span class="pill new">New today</span></div>
+    <div class="facts"><span>🏬 Woolworths Everyday Market</span><span>⏱ Ends No end date posted</span></div>
+    <p class="why">Listed at $599. TopCashback pays 20% back on orders over $150.01 with no cap, calculated on the pre-GST price (about $545), so roughly $109 back. Built-in grinder and a proper steam wand. Cashback arrives later and only pays if your click is tracked; check the listing is the BES870 sold by Woolworths.</p>
     
-    <p>Costco membership required. Product page may now show out of stock, so check first. Note it&#x27;s a 60Hz panel.</p>
-    <div class="links"><a href="https://www.ozbargain.com.au/node/981001" rel="noopener" target="_blank">OzBargain ↗</a><a href="https://www.costco.com.au/p/2026052" rel="noopener" target="_blank">Costco ↗</a></div>
+    <div class="actions"><a class="btn" href="https://www.ozbargain.com.au/node/981670" rel="noopener" target="_blank">View at Woolworths Everyday Market<span aria-hidden="true">↗</span></a><a class="btn ghost" href="https://www.ozbargain.com.au/node/981537" rel="noopener" target="_blank">Deal thread<span aria-hidden="true">↗</span></a></div>
   </div>
-</article></div></section><section role="tabpanel" id="p-bbqs" aria-labelledby="tab-bbqs" class="panel" hidden><h2>🔥 BBQs</h2><p class="empty">No deals met the bar today.</p></section><section role="tabpanel" id="p-coffee-machines" aria-labelledby="tab-coffee-machines" class="panel" hidden><h2>☕ Coffee machines</h2><article class="deal">
-  <div class="thumb fallback"><span>☕</span></div><div class="body">
+</article><article class="card deal is-top" data-verified="" data-saving="25" data-price="549.99" data-text="hisense 55 q6sau qled 4k led panel costco costco membership required product page may now show out of stock so check first note it s a 60hz panel tvs">
+  <div class="media"><span class="rank" aria-label="Rank 3">3</span><div class="thumb fallback"><span aria-hidden="true">📺</span></div></div>
+  <div class="content">
+    <div class="eyebrow">TVs</div><h3>Hisense 55&quot; Q6SAU QLED 4K (LED panel)</h3>
+    <div class="priceline"><span class="price">$549.99 delivered</span><span class="save">About 25% below other retailers</span></div>
+    <div class="pills"><span class="pill muted">Listed since Sat 31 Oct 2026</span></div>
+    <div class="facts"><span>🏬 Costco</span><span>⏱ Ends 15 Nov</span></div>
+    <p class="why">Costco membership required. Product page may now show out of stock, so check first. Note it&#x27;s a 60Hz panel.</p>
+    
+    <div class="actions"><a class="btn" href="https://www.ozbargain.com.au/node/981001" rel="noopener" target="_blank">View at Costco<span aria-hidden="true">↗</span></a><a class="btn ghost" href="https://www.costco.com.au/p/2026052" rel="noopener" target="_blank">Costco<span aria-hidden="true">↗</span></a></div>
+  </div>
+</article></div></section>
+<section id="sales" class="sec"><div class="sec-head"><h2>What's on</h2><p>Sales live now or starting in the next 7 days.</p></div><ul class="rail"><li class="sale card">
+  <div class="sale-top"><span class="status live">24 days left</span></div>
+  <h3>IKEA Black Friday</h3>
+  <div class="when">Until Mon 30 Nov</div>
+  <p>10% off almost everything, in store and online. Covers rugs and outdoor furniture, not appliances or kitchens.</p>
+  <div class="sale-links"><a href="https://www.ozbargain.com.au/node/981671" rel="noopener" target="_blank">OzBargain ↗</a></div>
+</li><li class="sale card">
+  <div class="sale-top"><span class="status urgent">2 days left</span></div>
+  <h3>Costco Barista Express deal</h3>
+  <div class="when">Until Sun 8 Nov</div>
+  <p>Members-only $549 price on the stainless BES875 ends soon.</p>
+  
+</li><li class="sale card">
+  <div class="sale-top"><span class="status soon">Starts in 3 days</span><span class="pill warn">Unconfirmed</span></div>
+  <h3>ShopBack mystery cashback</h3>
+  <div class="when">Mon 9 Nov</div>
+  <p>OzBargain commenters expect a &quot;mystery cashback&quot; event. Not confirmed.</p>
+  
+</li><li class="sale card">
+  <div class="sale-top"><span class="status soon">Starts in 5 days</span></div>
+  <h3>Singles Day (11.11)</h3>
+  <div class="when">Wed 11 Nov</div>
+  <p>One-day online sale across many retailers.</p>
+  
+</li><li class="sale card">
+  <div class="sale-top"><span class="status live">Live now</span></div>
+  <h3>Early Black Friday</h3>
+  
+  <p>Live now at The Good Guys, 99 Bikes and others. Black Friday itself is 27 Nov.</p>
+  
+</li></ul></section>
+<section id="categories" class="sec"><div class="sec-head"><h2>All deals by category</h2><p>Up to three of the best deals in each category.</p></div><div class="toolbar" role="search">
+  <label class="search"><span aria-hidden="true">🔎</span><input type="search" id="q" placeholder="Search deals, brands, stores" aria-label="Search deals"></label>
+  <label class="toggle"><input type="checkbox" id="verified-only"> Verified only</label>
+  <label class="sort">Sort <select id="sort" aria-label="Sort deals"><option value="best">Best match</option><option value="saving">Biggest saving</option><option value="price">Lowest price</option></select></label>
+</div><div id="cat-list"><section id="c-coffee-machines" class="cat sec-sub" data-cat="Coffee machines"><div class="cat-head"><h3><span aria-hidden="true">☕</span> Coffee machines</h3><span class="count">1</span></div><div class="grid"><article class="card deal" data-verified="" data-saving="17" data-price="490.0" data-text="breville barista express bes870 woolworths everyday market listed at 599 topcashback pays 20 back on orders over 150 01 with no cap calculated on the pre gst price about 545 so roughly 109 back built in grinder and a proper steam wand cashback arrives later and only pays if your click is tracked check the listing is the bes870 sold by woolworths coffee machines">
+  <div class="media"><div class="thumb fallback"><span aria-hidden="true">☕</span></div></div>
+  <div class="content">
     <h3>Breville Barista Express (BES870)</h3>
-    <div class="priceline"><span class="price">~$490 after cashback</span><span class="retailer">@ Woolworths Everyday Market</span></div>
-    <div class="badges"><span class="badge new">new</span></div>
-    <div class="meta">Usually $585–$599 · About 17% below usual · Ends: No end date posted</div>
+    <div class="priceline"><span class="price">~$490 after cashback</span><s class="was">$585–$599</s><span class="save">About 17% below usual</span></div>
+    <div class="pills"><span class="pill new">New today</span></div>
+    <div class="facts"><span>🏬 Woolworths Everyday Market</span><span>⏱ Ends No end date posted</span></div>
+    <p class="why">Listed at $599. TopCashback pays 20% back on orders over $150.01 with no cap, calculated on the pre-GST price (about $545), so roughly $109 back. Built-in grinder and a proper steam wand. Cashback arrives later and only pays if your click is tracked; check the listing is the BES870 sold by Woolworths.</p>
     
-    <p>Listed at $599. TopCashback pays 20% back on orders over $150.01 with no cap, calculated on the pre-GST price (about $545), so roughly $109 back. Built-in grinder and a proper steam wand. Cashback arrives later and only pays if your click is tracked; check the listing is the BES870 sold by Woolworths.</p>
-    <div class="links"><a href="https://www.ozbargain.com.au/node/981670" rel="noopener" target="_blank">TopCashback offer ↗</a><a href="https://www.ozbargain.com.au/node/981537" rel="noopener" target="_blank">Deal thread ↗</a></div>
+    <div class="actions"><a class="btn" href="https://www.ozbargain.com.au/node/981670" rel="noopener" target="_blank">View at Woolworths Everyday Market<span aria-hidden="true">↗</span></a><a class="btn ghost" href="https://www.ozbargain.com.au/node/981537" rel="noopener" target="_blank">Deal thread<span aria-hidden="true">↗</span></a></div>
   </div>
-</article><p class="notes-title">Other Barista Express prices</p><ul class="notes"><li>Breville eBay store: $549 with code SAVINGS (needs eBay Plus).</li><li>Costco: $549 for the stainless BES875, members only, until 8 Nov.</li><li>Amazon AU: $585.</li><li>The Good Guys will price-beat to $578.</li><li>Breville eBay store: refurbished units have been seen at $339.</li></ul></section><section role="tabpanel" id="p-tvs" aria-labelledby="tab-tvs" class="panel" hidden><h2>📺 TVs</h2><article class="deal">
-  <div class="thumb fallback"><span>📺</span></div><div class="body">
+</article></div><div class="cat-notes"><b>Other Barista Express prices</b><ul><li>Breville eBay store: $549 with code SAVINGS (needs eBay Plus).</li><li>Costco: $549 for the stainless BES875, members only, until 8 Nov.</li><li>Amazon AU: $585.</li><li>The Good Guys will price-beat to $578.</li><li>Breville eBay store: refurbished units have been seen at $339.</li></ul></div></section><section id="c-tvs" class="cat sec-sub" data-cat="TVs"><div class="cat-head"><h3><span aria-hidden="true">📺</span> TVs</h3><span class="count">1</span></div><div class="grid"><article class="card deal" data-verified="" data-saving="25" data-price="549.99" data-text="hisense 55 q6sau qled 4k led panel costco costco membership required product page may now show out of stock so check first note it s a 60hz panel tvs">
+  <div class="media"><div class="thumb fallback"><span aria-hidden="true">📺</span></div></div>
+  <div class="content">
     <h3>Hisense 55&quot; Q6SAU QLED 4K (LED panel)</h3>
-    <div class="priceline"><span class="price">$549.99 delivered</span><span class="retailer">@ Costco</span></div>
-    <div class="badges"><span class="badge prev">Previously posted · first Sat 31 Oct 2026</span></div>
-    <div class="meta">About 25% below other retailers · Ends: 15 Nov</div>
+    <div class="priceline"><span class="price">$549.99 delivered</span><span class="save">About 25% below other retailers</span></div>
+    <div class="pills"><span class="pill muted">Listed since Sat 31 Oct 2026</span></div>
+    <div class="facts"><span>🏬 Costco</span><span>⏱ Ends 15 Nov</span></div>
+    <p class="why">Costco membership required. Product page may now show out of stock, so check first. Note it&#x27;s a 60Hz panel.</p>
     
-    <p>Costco membership required. Product page may now show out of stock, so check first. Note it&#x27;s a 60Hz panel.</p>
-    <div class="links"><a href="https://www.ozbargain.com.au/node/981001" rel="noopener" target="_blank">OzBargain ↗</a><a href="https://www.costco.com.au/p/2026052" rel="noopener" target="_blank">Costco ↗</a></div>
+    <div class="actions"><a class="btn" href="https://www.ozbargain.com.au/node/981001" rel="noopener" target="_blank">View at Costco<span aria-hidden="true">↗</span></a><a class="btn ghost" href="https://www.costco.com.au/p/2026052" rel="noopener" target="_blank">Costco<span aria-hidden="true">↗</span></a></div>
   </div>
-</article></section><section role="tabpanel" id="p-office-screens" aria-labelledby="tab-office-screens" class="panel" hidden><h2>🖥️ Office screens</h2><p class="empty">No deals met the bar today.</p></section><section role="tabpanel" id="p-office-chairs" aria-labelledby="tab-office-chairs" class="panel" hidden><h2>💺 Office chairs</h2><p class="empty">No deals met the bar today.</p></section><section role="tabpanel" id="p-robotic-pool-cleaners" aria-labelledby="tab-robotic-pool-cleaners" class="panel" hidden><h2>🏊 Robotic pool cleaners</h2><p class="empty">No deals met the bar today.</p></section><section role="tabpanel" id="p-large-rugs" aria-labelledby="tab-large-rugs" class="panel" hidden><h2>🟫 Large rugs</h2><p class="empty">No deals met the bar today.</p></section><section role="tabpanel" id="p-air-fryers" aria-labelledby="tab-air-fryers" class="panel" hidden><h2>🍟 Air fryers</h2><p class="empty">No deals met the bar today.</p></section><section role="tabpanel" id="p-microwaves" aria-labelledby="tab-microwaves" class="panel" hidden><h2>♨️ Microwaves</h2><p class="empty">No deals met the bar today.</p></section><section role="tabpanel" id="p-slow-cookers" aria-labelledby="tab-slow-cookers" class="panel" hidden><h2>🍲 Slow cookers</h2><p class="empty">No deals met the bar today.</p></section><section role="tabpanel" id="p-kitchenware" aria-labelledby="tab-kitchenware" class="panel" hidden><h2>🍳 Kitchenware</h2><p class="empty">No deals met the bar today.</p></section><section role="tabpanel" id="p-cordless-stick-vacuums" aria-labelledby="tab-cordless-stick-vacuums" class="panel" hidden><h2>🧹 Cordless stick vacuums</h2><p class="empty">No deals met the bar today.</p><ul class="notes"><li>The Samsung Bespoke Jet Ultra stick vacuum was $749 on eBay but is now sold out at eBay, Myer and Samsung. Commenters on the deal expect it to come back.</li></ul></section><section role="tabpanel" id="p-robot-vacuums" aria-labelledby="tab-robot-vacuums" class="panel" hidden><h2>🤖 Robot vacuums</h2><article class="deal">
-  <div class="thumb fallback"><span>🤖</span></div><div class="body">
+</article></div></section><section id="c-robot-vacuums" class="cat sec-sub" data-cat="Robot vacuums"><div class="cat-head"><h3><span aria-hidden="true">🤖</span> Robot vacuums</h3><span class="count">1</span></div><div class="grid"><article class="card deal" data-verified="" data-saving="22" data-price="999.0" data-text="roborock qrevo curv 2 flow robot vacuum mop self empty dock roborock au covers both vacuuming and mopping and the dock empties itself robot vacuums">
+  <div class="media"><div class="thumb fallback"><span aria-hidden="true">🤖</span></div></div>
+  <div class="content">
     <h3>Roborock Qrevo Curv 2 Flow (robot vacuum + mop, self-empty dock)</h3>
-    <div class="priceline"><span class="price">$999</span><span class="retailer">@ Roborock AU</span></div>
-    <div class="badges"><span class="badge prev">Previously posted · first Tue 3 Nov 2026</span></div>
-    <div class="meta">Usually $1,799 · About 22% below the best street price</div>
+    <div class="priceline"><span class="price">$999</span><s class="was">$1,799</s><span class="save">About 22% below the best street price</span></div>
+    <div class="pills"><span class="pill muted">Listed since Tue 3 Nov 2026</span></div>
+    <div class="facts"><span>🏬 Roborock AU</span></div>
+    <p class="why">Covers both vacuuming and mopping, and the dock empties itself.</p>
     
-    <p>Covers both vacuuming and mopping, and the dock empties itself.</p>
-    <div class="links"><a href="https://roborockstore.com.au/products/qrevo-curv-2-flow" rel="noopener" target="_blank">Roborock AU ↗</a></div>
+    <div class="actions"><a class="btn" href="https://roborockstore.com.au/products/qrevo-curv-2-flow" rel="noopener" target="_blank">View at Roborock AU<span aria-hidden="true">↗</span></a></div>
   </div>
-</article></section><section role="tabpanel" id="p-lawn-mowers" aria-labelledby="tab-lawn-mowers" class="panel" hidden><h2>🌱 Lawn mowers</h2><article class="deal">
-  <div class="thumb fallback"><span>🌱</span></div><div class="body">
+</article></div></section><section id="c-lawn-mowers" class="cat sec-sub" data-cat="Lawn mowers"><div class="cat-head"><h3><span aria-hidden="true">🌱</span> Lawn mowers</h3><span class="count">1</span></div><div class="grid"><article class="card deal" data-verified="" data-saving="23" data-price="229.0" data-text="ozito pxc 36v 2 18v 41cm brushless mower kit bunnings kit includes 2 batteries and a charger the batteries fit all ozito pxc 18v tools cuts 41cm just over the 33 40cm target stock is patchy item number 1108457 lawn mowers">
+  <div class="media"><div class="thumb fallback"><span aria-hidden="true">🌱</span></div></div>
+  <div class="content">
     <h3>Ozito PXC 36V (2×18V) 41cm brushless mower kit</h3>
-    <div class="priceline"><span class="price">$229</span><span class="retailer">@ Bunnings</span></div>
-    <div class="badges"><span class="badge prev">Previously posted · first Fri 30 Oct 2026</span></div>
-    <div class="meta">Usually $299 · 23% off</div>
+    <div class="priceline"><span class="price">$229</span><s class="was">$299</s><span class="save">23% off</span></div>
+    <div class="pills"><span class="pill muted">Listed since Fri 30 Oct 2026</span></div>
+    <div class="facts"><span>🏬 Bunnings</span></div>
+    <p class="why">Kit includes 2 batteries and a charger; the batteries fit all Ozito PXC 18V tools. Cuts 41cm, just over the 33–40cm target. Stock is patchy (item number 1108457).</p>
     
-    <p>Kit includes 2 batteries and a charger; the batteries fit all Ozito PXC 18V tools. Cuts 41cm, just over the 33–40cm target. Stock is patchy (item number 1108457).</p>
-    <div class="links"><a href="https://www.ozbargain.com.au/node/976617" rel="noopener" target="_blank">OzBargain ↗</a><a href="https://bunnings.youinstock.com.au/search/1108457/" rel="noopener" target="_blank">Stock checker ↗</a></div>
+    <div class="actions"><a class="btn" href="https://www.ozbargain.com.au/node/976617" rel="noopener" target="_blank">View at Bunnings<span aria-hidden="true">↗</span></a><a class="btn ghost" href="https://bunnings.youinstock.com.au/search/1108457/" rel="noopener" target="_blank">Stock checker<span aria-hidden="true">↗</span></a></div>
   </div>
-</article></section><section role="tabpanel" id="p-heat-pump-dryers" aria-labelledby="tab-heat-pump-dryers" class="panel" hidden><h2>👕 Heat pump dryers</h2><p class="empty">No deals met the bar today.</p></section><section role="tabpanel" id="p-kettle-and-toaster-packs" aria-labelledby="tab-kettle-and-toaster-packs" class="panel" hidden><h2>🍞 Kettle and toaster packs</h2><p class="empty">No deals met the bar today.</p></section><section role="tabpanel" id="p-outdoor-dining-settings" aria-labelledby="tab-outdoor-dining-settings" class="panel" hidden><h2>🪑 Outdoor dining settings</h2><p class="empty">No deals met the bar today.</p></section>
-<footer>Updated every morning (Adelaide time). Prices and stock change quickly: always check the retailer before buying. Not affiliated with any retailer; no affiliate links.</footer>
-</div><script>
+</article></div></section></div><p id="no-results" class="empty" hidden>No deals match those filters.</p><details class="nothing card"><summary>Nothing worth buying today in 13 categories</summary><ul><li><span aria-hidden="true">🔥</span> <b>BBQs</b></li><li><span aria-hidden="true">🖥️</span> <b>Office screens</b></li><li><span aria-hidden="true">💺</span> <b>Office chairs</b></li><li><span aria-hidden="true">🏊</span> <b>Robotic pool cleaners</b></li><li><span aria-hidden="true">🟫</span> <b>Large rugs</b></li><li><span aria-hidden="true">🍟</span> <b>Air fryers</b></li><li><span aria-hidden="true">♨️</span> <b>Microwaves</b></li><li><span aria-hidden="true">🍲</span> <b>Slow cookers</b></li><li><span aria-hidden="true">🔪</span> <b>Kitchenware</b></li><li><span aria-hidden="true">🧹</span> <b>Cordless stick vacuums</b><span class="nd-note">The Samsung Bespoke Jet Ultra stick vacuum was $749 on eBay but is now sold out at eBay, Myer and Samsung. Commenters on the deal expect it to come back.</span></li><li><span aria-hidden="true">👕</span> <b>Heat pump dryers</b></li><li><span aria-hidden="true">🍞</span> <b>Kettle and toaster packs</b></li><li><span aria-hidden="true">🪑</span> <b>Outdoor dining settings</b></li></ul></details></section>
+</main>
+<footer><span>Genuinely good deals from Australian retailers, price-history checked every morning. Adelaide delivery or pickup.</span><span>Prices and stock change quickly: check the retailer before buying. Not affiliated with any retailer; no affiliate links.</span></footer>
+<script>
 document.documentElement.classList.remove('nojs');
 (function(){
-  var tabs=[].slice.call(document.querySelectorAll('[role=tab]'));
-  if(!tabs.length)return;
-  function pick(id,focus){
-    tabs.forEach(function(t){
-      var on=t.dataset.tab===id;
-      t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;
-      document.getElementById('p-'+t.dataset.tab).hidden=!on;
-      if(on&&focus)t.focus();
-      if(on){var bar=t.parentNode,l=t.offsetLeft-bar.offsetLeft;
-        if(l<bar.scrollLeft||l+t.offsetWidth>bar.scrollLeft+bar.clientWidth)bar.scrollLeft=l-16;}
-    });
+  // Highlight the section in view in the jump nav
+  var links=[].slice.call(document.querySelectorAll('.jump a'));
+  var map={};links.forEach(function(a){var t=document.querySelector(a.getAttribute('href'));if(t)map[t.id]=a;});
+  if('IntersectionObserver' in window){
+    var current=null;
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){if(en.isIntersecting)current=en.target.id;});
+      links.forEach(function(a){a.classList.toggle('active',map[current]===a);});
+      var a=map[current];if(a){var bar=a.parentNode,l=a.offsetLeft-bar.offsetLeft;
+        if(l<bar.scrollLeft||l+a.offsetWidth>bar.scrollLeft+bar.clientWidth)bar.scrollTo({left:l-20,behavior:'smooth'});}
+    },{rootMargin:'-80px 0px -70% 0px'});
+    Object.keys(map).forEach(function(id){io.observe(document.getElementById(id));});
   }
-  tabs.forEach(function(t,i){
-    t.addEventListener('click',function(){pick(t.dataset.tab);history.replaceState(null,'','#'+t.dataset.tab);
-      var p=document.getElementById('p-'+t.dataset.tab),r=p.getBoundingClientRect();
-      if(r.top<70||r.top>innerHeight*0.6)p.scrollIntoView({behavior:'smooth',block:'start'});});
-    t.addEventListener('keydown',function(ev){
-      var j=ev.key==='ArrowRight'?i+1:ev.key==='ArrowLeft'?i-1:null;
-      if(j===null)return;ev.preventDefault();pick(tabs[(j+tabs.length)%tabs.length].dataset.tab,true);
+  // Search, verified-only filter and sort for the category list
+  var q=document.getElementById('q'),vo=document.getElementById('verified-only'),so=document.getElementById('sort');
+  if(!q)return;
+  var cats=[].slice.call(document.querySelectorAll('#cat-list .cat'));
+  cats.forEach(function(c){[].slice.call(c.querySelectorAll('.deal')).forEach(function(d,i){d.dataset.i=i;});});
+  try{vo.checked=localStorage.getItem('tbf-verified')==='1';so.value=localStorage.getItem('tbf-sort')||'best';}catch(e){}
+  function apply(){
+    var term=q.value.toLowerCase().replace(/[^a-z0-9]+/g,' ').trim(),any=false;
+    try{localStorage.setItem('tbf-verified',vo.checked?'1':'0');localStorage.setItem('tbf-sort',so.value);}catch(e){}
+    cats.forEach(function(c){
+      var grid=c.querySelector('.grid'),deals=[].slice.call(grid.children),shown=0;
+      deals.sort(function(a,b){
+        if(so.value==='saving')return(+b.dataset.saving)-(+a.dataset.saving);
+        if(so.value==='price')return(+a.dataset.price||1e9)-(+b.dataset.price||1e9);
+        return a.dataset.i-b.dataset.i;}).forEach(function(d){grid.appendChild(d);});
+      deals.forEach(function(d){
+        var ok=(!term||d.dataset.text.indexOf(term)>-1)&&(!vo.checked||d.dataset.verified==='verified');
+        d.hidden=!ok;if(ok)shown++;});
+      c.hidden=!shown;c.querySelector('.count').textContent=shown;if(shown)any=true;
     });
-  });
-  var h=location.hash.slice(1);
-  if(h&&document.getElementById('p-'+h))pick(h);
-  else{var s=tabs.filter(function(t){return t.getAttribute('aria-selected')==='true'})[0];pick(s.dataset.tab);}
+    document.getElementById('no-results').hidden=any;
+  }
+  [q,vo,so].forEach(function(el){el.addEventListener('input',apply);el.addEventListener('change',apply);});
+  apply();
 })();
 </script></body></html>
