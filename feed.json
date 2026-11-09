@@ -1,226 +1,645 @@
 {
-  "date": "2026-11-06",
-  "display_date": "Fri 6 Nov 2026",
-  "summary": "One new deal today: a cashback stack brings the Breville Barista Express to about $490. Yesterday's robot vacuum and TV deals are still listed.",
+  "date": "2026-11-10",
+  "display_date": "Tue 10 Nov 2026",
+  "summary": "Robot vacuums and dryers lead today: two record-low robot vacuum + mop deals, a record-low F&P heat pump dryer at JB Hi-Fi, and Steelcase chairs 35% off until 15 Nov. No verified BBQ, coffee, TV or kitchen deals yet.",
   "top": [
     {
-      "item": "Roborock Qrevo Curv 2 Flow (robot vacuum + mop, self-empty dock)",
+      "item": "Roborock Qrevo Edge 2 (RR-QE252) robot vacuum + mop, self-empty dock",
       "category": "Robot vacuums",
-      "retailer": "Roborock AU",
-      "price": "$999",
-      "usual": "$1,799",
-      "saving": "About 22% below the best street price",
-      "status": "price unchanged",
-      "why": "Covers both vacuuming and mopping, and the dock empties itself.",
-      "ends": "",
-      "links": [
-        {
-          "label": "Roborock AU",
-          "url": "https://roborockstore.com.au/products/qrevo-curv-2-flow"
-        }
-      ],
-      "previously_posted": "Tue 3 Nov 2026",
-      "image": ""
-    },
-    {
-      "item": "Breville Barista Express (BES870)",
-      "category": "Coffee machines",
-      "retailer": "Woolworths Everyday Market",
-      "price": "~$490 after cashback",
-      "usual": "$585–$599",
-      "saving": "About 17% below usual",
+      "retailer": "Appliances Online",
+      "price": "$939 delivered",
+      "usual": "$999–$1,398 in past deals",
+      "saving": "Record low",
+      "lowest": "$939 (this deal, 9 Nov 2026); previous best $999 at Amazon AU (29 Sep 2026)",
+      "price_source": "OzBargain deal history",
+      "verified": "verified",
+      "reviews": "Too new for reviews",
+      "delivery": "Free delivery with old-vacuum removal. Stock is in NSW first; other states expected later this week",
       "status": "new",
-      "why": "Listed at $599. TopCashback pays 20% back on orders over $150.01 with no cap, calculated on the pre-GST price (about $545), so roughly $109 back. Built-in grinder and a proper steam wand. Cashback arrives later and only pays if your click is tracked; check the listing is the BES870 sold by Woolworths.",
-      "ends": "No end date posted",
+      "previously_posted": "",
+      "stretch": false,
+      "why": "Lowest price on record for a mop + self-empty model, well under the $1,200 guide. The product page showed $2,199 in one check, so confirm $939 in the cart.",
+      "ends": "2 Dec",
       "links": [
         {
-          "label": "TopCashback offer",
-          "url": "https://www.ozbargain.com.au/node/981670"
+          "label": "Appliances Online",
+          "url": "https://www.appliancesonline.com.au/product/roborock-qrevo-edge-2-robot-vacuum-cleaner-rr-qe252-03-blk/"
         },
         {
-          "label": "Deal thread",
-          "url": "https://www.ozbargain.com.au/node/981537"
+          "label": "OzBargain",
+          "url": "https://www.ozbargain.com.au/node/982261"
         }
       ],
-      "previously_posted": "",
       "image": ""
     },
     {
-      "item": "Hisense 55\" Q6SAU QLED 4K (LED panel)",
-      "category": "TVs",
-      "retailer": "Costco",
-      "price": "$549.99 delivered",
-      "usual": "",
-      "saving": "About 25% below other retailers",
-      "status": "price unchanged",
-      "why": "Costco membership required. Product page may now show out of stock, so check first. Note it's a 60Hz panel.",
+      "item": "Fisher & Paykel DH8060P3 8kg heat pump dryer (7-star energy)",
+      "category": "Heat pump dryers",
+      "retailer": "JB Hi-Fi",
+      "price": "$844",
+      "usual": "$991–$1,099 elsewhere",
+      "saving": "About 15–23% below other current/past prices",
+      "lowest": "Previous lows $999 (Harvey Norman, Jun 2023) and $1,099 (JB, Jun 2025); $844 beats both",
+      "price_source": "OzBargain deal history + Appliances Online current price",
+      "verified": "verified",
+      "reviews": "4.7/5 from 339 (Appliances Online); main complaint: water tank needs frequent emptying",
+      "delivery": "Bulky: check JB delivery cost to Adelaide at checkout, or collect from an Adelaide JB store",
+      "status": "new",
+      "previously_posted": "",
+      "stretch": false,
+      "why": "7-star energy rating, 8kg, below the $1,000 guide and below its previous record low.",
+      "ends": "Not stated",
+      "links": [
+        {
+          "label": "JB Hi-Fi",
+          "url": "https://www.jbhifi.com.au/products/fisher-paykel-dh8060p3-8kg-heat-pump-dryer-white"
+        }
+      ],
+      "image": ""
+    },
+    {
+      "item": "MOVA S70 Pro Roller robot vacuum + mop, self-empty dock",
+      "category": "Robot vacuums",
+      "retailer": "JB Hi-Fi",
+      "price": "$986",
+      "usual": "~$1,097+ (previous low)",
+      "saving": "About 10% below the previous record low",
+      "lowest": "Previous low $1,097 (PriceHipster, quoted on OzBargain)",
+      "price_source": "PriceHipster via OzBargain",
+      "verified": "verified",
+      "reviews": "4.67/5 at JB Hi-Fi (review count not shown)",
+      "delivery": "JB delivery or click & collect at an Adelaide store; The Good Guys reportedly price-match",
+      "status": "new",
+      "previously_posted": "",
+      "stretch": false,
+      "why": "New record low for a roller-mop model under the guide. JB's 'was $2,299' is inflated; judge it on the record low, not the 'was'.",
+      "ends": "2 Dec",
+      "links": [
+        {
+          "label": "JB Hi-Fi",
+          "url": "https://www.jbhifi.com.au/products/mova-s70-pro-roller-wet-and-dry-vacuum"
+        }
+      ],
+      "image": ""
+    },
+    {
+      "item": "Steelcase Series 1 ergonomic chair",
+      "category": "Office chairs",
+      "retailer": "Steelcase AU",
+      "price": "$659.25",
+      "usual": "~$1,014 (list price before the 35% sale)",
+      "saving": "35% off",
+      "lowest": "$435 (May 2021, older list prices)",
+      "price_source": "OzBargain product history + Steelcase AU sale",
+      "verified": "verified",
+      "reviews": "No rating checked today",
+      "delivery": "Free delivery is VIC/NSW only; Adelaide delivery cost not confirmed",
+      "status": "new",
+      "previously_posted": "",
+      "stretch": false,
+      "why": "Adjustable lumbar, seat depth and 4D arms, under the $800 guide. Series 2 is $899.25 in the same sale.",
       "ends": "15 Nov",
       "links": [
         {
-          "label": "OzBargain",
-          "url": "https://www.ozbargain.com.au/node/981001"
+          "label": "Steelcase AU",
+          "url": "https://au.steelcase.com/"
         },
         {
-          "label": "Costco",
-          "url": "https://www.costco.com.au/p/2026052"
+          "label": "OzBargain history",
+          "url": "https://www.ozbargain.com.au/product/steelcase-series-1"
         }
       ],
-      "previously_posted": "Sat 31 Oct 2026",
+      "image": ""
+    },
+    {
+      "item": "Samsung Bespoke AI Jet Ultra VS90F40DBG stick vacuum + clean station",
+      "category": "Cordless stick vacuums",
+      "retailer": "Samsung AU official eBay store",
+      "price": "$799 ($749 with eBay Plus code PLOCT)",
+      "usual": "$799–$999",
+      "saving": "Up to 25% below the previous deal price",
+      "lowest": "$749 (this deal, 4 Nov 2026); previous deal $999 (Samsung, Nov 2025)",
+      "price_source": "OzBargain deal history (thin)",
+      "verified": "verified",
+      "reviews": "4.4/5 from 27 (Appliances Online); complaints: battery fade, weekly filter cleaning, heavy floor head",
+      "delivery": "eBay delivery; Myer has it at $799 + $15 shipping",
+      "status": "new",
+      "previously_posted": "",
+      "stretch": false,
+      "why": "Lowest price on record, under the $800 guide. Stock has been on and off; check before buying.",
+      "ends": "Not stated",
+      "links": [
+        {
+          "label": "OzBargain",
+          "url": "https://www.ozbargain.com.au/node/981641"
+        }
+      ],
       "image": ""
     }
   ],
-  "categories": [
+  "stores": [
     {
-      "name": "TVs",
-      "deals": [
+      "name": "JB Hi-Fi",
+      "why": "F&P heat pump dryer $844 (record low), MOVA S70 Pro Roller $986 (to 2 Dec), Hisense U7 TV $1,195. Click & collect in Adelaide.",
+      "links": [
         {
-          "item": "Hisense 55\" Q6SAU QLED 4K (LED panel)",
-          "retailer": "Costco",
-          "price": "$549.99 delivered",
-          "usual": "",
-          "saving": "About 25% below other retailers",
-          "status": "price unchanged",
-          "why": "Costco membership required. Product page may now show out of stock, so check first. Note it's a 60Hz panel.",
-          "ends": "15 Nov",
-          "links": [
-            {
-              "label": "OzBargain",
-              "url": "https://www.ozbargain.com.au/node/981001"
-            },
-            {
-              "label": "Costco",
-              "url": "https://www.costco.com.au/p/2026052"
-            }
-          ],
-          "previously_posted": "Sat 31 Oct 2026",
-          "image": ""
+          "label": "JB Hi-Fi",
+          "url": "https://www.jbhifi.com.au/"
         }
-      ],
-      "notes": []
-    },
-    {
-      "name": "Coffee machines",
-      "deals": [
-        {
-          "item": "Breville Barista Express (BES870)",
-          "retailer": "Woolworths Everyday Market",
-          "price": "~$490 after cashback",
-          "usual": "$585–$599",
-          "saving": "About 17% below usual",
-          "status": "new",
-          "why": "Listed at $599. TopCashback pays 20% back on orders over $150.01 with no cap, calculated on the pre-GST price (about $545), so roughly $109 back. Built-in grinder and a proper steam wand. Cashback arrives later and only pays if your click is tracked; check the listing is the BES870 sold by Woolworths.",
-          "ends": "No end date posted",
-          "links": [
-            {
-              "label": "TopCashback offer",
-              "url": "https://www.ozbargain.com.au/node/981670"
-            },
-            {
-              "label": "Deal thread",
-              "url": "https://www.ozbargain.com.au/node/981537"
-            }
-          ],
-          "previously_posted": "",
-          "image": ""
-        }
-      ],
-      "notes": [
-        "Breville eBay store: $549 with code SAVINGS (needs eBay Plus).",
-        "Costco: $549 for the stainless BES875, members only, until 8 Nov.",
-        "Amazon AU: $585.",
-        "The Good Guys will price-beat to $578.",
-        "Breville eBay store: refurbished units have been seen at $339."
-      ],
-      "notes_title": "Other Barista Express prices"
-    },
-    {
-      "name": "Cordless stick vacuums",
-      "deals": [],
-      "notes": [
-        "The Samsung Bespoke Jet Ultra stick vacuum was $749 on eBay but is now sold out at eBay, Myer and Samsung. Commenters on the deal expect it to come back."
       ]
     },
     {
-      "name": "Lawn mowers",
-      "deals": [
+      "name": "Appliances Online",
+      "why": "Roborock Qrevo Edge 2 $939 (record low, to 2 Dec) and dryer prices; ignore its inflated RRPs.",
+      "links": [
         {
-          "item": "Ozito PXC 36V (2×18V) 41cm brushless mower kit",
-          "retailer": "Bunnings",
-          "price": "$229",
-          "usual": "$299",
-          "saving": "23% off",
-          "status": "price unchanged",
-          "why": "Kit includes 2 batteries and a charger; the batteries fit all Ozito PXC 18V tools. Cuts 41cm, just over the 33–40cm target. Stock is patchy (item number 1108457).",
-          "ends": "",
-          "links": [
-            {
-              "label": "OzBargain",
-              "url": "https://www.ozbargain.com.au/node/976617"
-            },
-            {
-              "label": "Stock checker",
-              "url": "https://bunnings.youinstock.com.au/search/1108457/"
-            }
-          ],
-          "previously_posted": "Fri 30 Oct 2026",
-          "image": ""
+          "label": "OzBargain",
+          "url": "https://www.ozbargain.com.au/node/982261"
         }
-      ],
-      "notes": []
+      ]
     },
     {
-      "name": "Robot vacuums",
-      "deals": [
+      "name": "Steelcase AU",
+      "why": "25–35% off storewide to 15 Nov. Free delivery only VIC/NSW.",
+      "links": [
         {
-          "item": "Roborock Qrevo Curv 2 Flow (robot vacuum + mop, self-empty dock)",
-          "retailer": "Roborock AU",
-          "price": "$999",
-          "usual": "$1,799",
-          "saving": "About 22% below the best street price",
-          "status": "price unchanged",
-          "why": "Covers both vacuuming and mopping, and the dock empties itself.",
-          "ends": "",
-          "links": [
-            {
-              "label": "Roborock AU",
-              "url": "https://roborockstore.com.au/products/qrevo-curv-2-flow"
-            }
-          ],
-          "previously_posted": "Tue 3 Nov 2026",
-          "image": ""
+          "label": "Steelcase AU",
+          "url": "https://au.steelcase.com/"
         }
-      ],
-      "notes": []
-    }
-  ],
-  "notes": [],
-  "sales": [
+      ]
+    },
     {
-      "title": "IKEA Black Friday",
-      "text": "10% off almost everything, in store and online. Covers rugs and outdoor furniture, not appliances or kitchens.",
-      "starts": "",
-      "ends": "2026-11-30",
-      "confirmed": true,
+      "name": "Costco",
+      "why": "Robot vacuums $599.99 (Roborock Qrevo C Pro to 30 Nov; Narwal Freo Z10 to 6 Dec). Members only.",
+      "links": [
+        {
+          "label": "OzBargain",
+          "url": "https://www.ozbargain.com.au/node/982202"
+        }
+      ]
+    },
+    {
+      "name": "IKEA",
+      "why": "10% off almost everything to 30 Nov, including rugs and outdoor furniture. Adelaide store.",
       "links": [
         {
           "label": "OzBargain",
           "url": "https://www.ozbargain.com.au/node/981671"
         }
       ]
+    }
+  ],
+  "avoid": [
+    {
+      "item": "Aiper Scuba X1 cordless pool cleaner",
+      "retailer": "Aiper AU",
+      "why": "'48-hour flash sale' at $1,399.99 (was $1,999.99), but it was already $1,399.99 in mid-Oct."
     },
     {
-      "title": "Costco Barista Express deal",
-      "text": "Members-only $549 price on the stainless BES875 ends soon.",
+      "item": "Ninja AF300 dual zone air fryer",
+      "retailer": "Kitchen Warehouse",
+      "why": "'$249.95, was $449.99': $249 is its normal price; record low is $139."
+    },
+    {
+      "item": "F&P DH8060P3 dryer",
+      "retailer": "Appliances Online",
+      "why": "'50% off $1,999' to $991; JB has it at $844."
+    },
+    {
+      "item": "Samsung Bespoke AI Jet Ultra",
+      "retailer": "Appliances Online",
+      "why": "$1,405 '17% off' while Samsung's eBay store sells it for $799."
+    },
+    {
+      "item": "Breville Barista Express Charcoal",
+      "retailer": "Appliances Online",
+      "why": "$1,049 'RRP $1,099' while others charge $585–$599."
+    },
+    {
+      "item": "Roborock Qrevo Curv 2 Flow",
+      "retailer": "Roborock AU",
+      "why": "'Regular price $1,799' is inflated; it's $999 now and was $799 on Amazon to 5 Nov."
+    }
+  ],
+  "categories": [
+    {
+      "name": "BBQs",
+      "advice": "Wait: no hooded 4–6 burner gas deals today; Black Friday (27 Nov) is the likely window.",
+      "deals": [],
+      "notes_title": "Prices to watch",
+      "notes": [
+        "Weber Spirit E-425 LPG: $1,299 at Weber AU, full price.",
+        "Beefeater 1200 4-burner: $1,182 at Appliances Online; Costco had a similar one for $749.99 in Aug.",
+        "Accessories: no thermometer, cover or gas bottle deals found today."
+      ]
+    },
+    {
+      "name": "Coffee machines",
+      "advice": "Wait: modest discounts only; the record low is $518.",
+      "deals": [],
+      "notes_title": "Prices to watch",
+      "notes": [
+        "Breville Barista Express BES870 $565 at Woolworths Everyday Market (code BF30, to 1 Dec). Usual $585–$599; record low $518 (The Good Guys price check, Jul 2026).",
+        "The Good Guys' price-check button has given $518–$528 before."
+      ]
+    },
+    {
+      "name": "TVs",
+      "advice": "Wait unless needed now: no verified TV deals.",
+      "deals": [
+        {
+          "item": "Hisense 55\" U7SAU 4K (2026, Mini-LED)",
+          "category": "TVs",
+          "retailer": "JB Hi-Fi",
+          "price": "$1,195",
+          "usual": "$1,395 (Betta 'was')",
+          "saving": "14% off the 'was' price",
+          "lowest": "Not found",
+          "price_source": "Compared with Betta, Costco ($1,199.99, out of stock) and Staticice",
+          "verified": "unverified",
+          "reviews": "4.8/5 from 39 (Appliances Online)",
+          "delivery": "JB delivery or click & collect at an Adelaide store",
+          "status": "new",
+          "previously_posted": "",
+          "stretch": false,
+          "why": "Mini-LED at a mid-range price, under the $1,500 guide. Staticice listed Betta at $1,095, which may be out of date; worth asking JB to price-match if it's live.",
+          "ends": "Not stated",
+          "links": [
+            {
+              "label": "JB Hi-Fi",
+              "url": "https://www.jbhifi.com.au/products/hisense-55-u7sau-mini-led-hi-qled-4k-smart-ai-tv-2026"
+            }
+          ],
+          "image": ""
+        }
+      ],
+      "notes_title": "Prices to watch",
+      "notes": [
+        "TCL 55C7L at $1,387 (Betta) isn't a deal; it was ~$1,219 with a soundbar in July."
+      ]
+    },
+    {
+      "name": "Office screens",
+      "advice": "Wait: nothing verified.",
+      "deals": [
+        {
+          "item": "Dell U2724DE 27\" QHD 120Hz IPS, Thunderbolt/USB-C hub, height-adjustable",
+          "category": "Office screens",
+          "retailer": "Umart / MSY",
+          "price": "$579",
+          "usual": "~$549–$579",
+          "saving": "None verified",
+          "lowest": "Not found ($548.90 at Dell AU, Jun 2026)",
+          "price_source": "Staticice (9 Nov) + BuyWisely",
+          "verified": "unverified",
+          "reviews": "No rating checked today",
+          "delivery": "Umart has an Adelaide store for pickup",
+          "status": "new",
+          "previously_posted": "",
+          "stretch": false,
+          "why": "Fits every monitor criterion and is under the $600 guide. Mwave's spend-and-save ($60 off $500, to 22 Nov) could help if it stocks it.",
+          "ends": "Not stated",
+          "links": [
+            {
+              "label": "Staticice",
+              "url": "https://www.staticice.com.au/cgi-bin/search.cgi?q=U2724DE"
+            }
+          ],
+          "image": ""
+        }
+      ],
+      "notes_title": "Prices to watch",
+      "notes": [
+        "Dell S2725QC (27\" 4K, USB-C): $429 at Dell AU, unavailable; record low $372.23 (25 Jun 2026)."
+      ]
+    },
+    {
+      "name": "Office chairs",
+      "advice": "Buy now if a Steelcase suits; the sale ends 15 Nov.",
+      "deals": [
+        {
+          "item": "Steelcase Series 1 ergonomic chair",
+          "category": "Office chairs",
+          "retailer": "Steelcase AU",
+          "price": "$659.25",
+          "usual": "~$1,014 (list price before the 35% sale)",
+          "saving": "35% off",
+          "lowest": "$435 (May 2021, older list prices)",
+          "price_source": "OzBargain product history + Steelcase AU sale",
+          "verified": "verified",
+          "reviews": "No rating checked today",
+          "delivery": "Free delivery is VIC/NSW only; Adelaide delivery cost not confirmed",
+          "status": "new",
+          "previously_posted": "",
+          "stretch": false,
+          "why": "Adjustable lumbar, seat depth and 4D arms, under the $800 guide. Series 2 is $899.25 in the same sale.",
+          "ends": "15 Nov",
+          "links": [
+            {
+              "label": "Steelcase AU",
+              "url": "https://au.steelcase.com/"
+            },
+            {
+              "label": "OzBargain history",
+              "url": "https://www.ozbargain.com.au/product/steelcase-series-1"
+            }
+          ],
+          "image": ""
+        }
+      ]
+    },
+    {
+      "name": "Robotic pool cleaners",
+      "advice": "Wait: nothing meets the bar today.",
+      "deals": [],
+      "notes_title": "Prices to watch",
+      "notes": [
+        "Aiper Scuba X1 cordless $1,399.99 is its normal price (see below). Dolphin Liberty 400: ask Clark Rubber or Poolwerx for a price."
+      ]
+    },
+    {
+      "name": "Large rugs",
+      "advice": "Wait: nothing meets the bar today.",
+      "deals": [],
+      "notes_title": "Prices to watch",
+      "notes": [
+        "IKEA VOLLERSLEV 200×300 high pile $399 (4.6/5, 448 reviews; vacuum/spot-clean only). IKEA's 10% off to 30 Nov wasn't shown on the product page; check at checkout."
+      ]
+    },
+    {
+      "name": "Air fryers",
+      "advice": "Wait for Black Friday: nothing meets the bar today.",
+      "deals": [],
+      "notes_title": "Prices to watch",
+      "notes": [
+        "Ninja AF300 dual zone: $249 at JB Hi-Fi; record low $139 (Amazon, Nov 2025). Aim for ~$140–$150."
+      ]
+    },
+    {
+      "name": "Microwaves",
+      "advice": "Wait: nothing meets the bar today.",
+      "deals": [],
+      "notes_title": "Prices to watch",
+      "notes": [
+        "Panasonic NN-ST64Q 32L inverter: $329 at Bing Lee and Officeworks. A similar Panasonic has been $246. Aim for ~$250."
+      ]
+    },
+    {
+      "name": "Slow cookers",
+      "advice": "Wait: nothing meets the bar today.",
+      "deals": [],
+      "notes_title": "Prices to watch",
+      "notes": [
+        "Breville Searing Slow Cooker LSC650 6L: $229 at Betta, over the $150 guide."
+      ]
+    },
+    {
+      "name": "Kitchenware",
+      "advice": "Wait: nothing meets the bar today; Black Friday is usually the window.",
+      "deals": []
+    },
+    {
+      "name": "Cordless stick vacuums",
+      "advice": "Buy now if the Samsung is in stock.",
+      "deals": [
+        {
+          "item": "Samsung Bespoke AI Jet Ultra VS90F40DBG stick vacuum + clean station",
+          "category": "Cordless stick vacuums",
+          "retailer": "Samsung AU official eBay store",
+          "price": "$799 ($749 with eBay Plus code PLOCT)",
+          "usual": "$799–$999",
+          "saving": "Up to 25% below the previous deal price",
+          "lowest": "$749 (this deal, 4 Nov 2026); previous deal $999 (Samsung, Nov 2025)",
+          "price_source": "OzBargain deal history (thin)",
+          "verified": "verified",
+          "reviews": "4.4/5 from 27 (Appliances Online); complaints: battery fade, weekly filter cleaning, heavy floor head",
+          "delivery": "eBay delivery; Myer has it at $799 + $15 shipping",
+          "status": "new",
+          "previously_posted": "",
+          "stretch": false,
+          "why": "Lowest price on record, under the $800 guide. Stock has been on and off; check before buying.",
+          "ends": "Not stated",
+          "links": [
+            {
+              "label": "OzBargain",
+              "url": "https://www.ozbargain.com.au/node/981641"
+            }
+          ],
+          "image": ""
+        }
+      ],
+      "notes_title": "Prices to watch",
+      "notes": [
+        "Dyson V15 Detect Absolute + Floor Dok: $798 at Dyson's eBay store is a fair price, not a deal (record $638.40, 16 Oct)."
+      ]
+    },
+    {
+      "name": "Robot vacuums",
+      "advice": "Buy now: two record lows today.",
+      "deals": [
+        {
+          "item": "Roborock Qrevo Edge 2 (RR-QE252) robot vacuum + mop, self-empty dock",
+          "category": "Robot vacuums",
+          "retailer": "Appliances Online",
+          "price": "$939 delivered",
+          "usual": "$999–$1,398 in past deals",
+          "saving": "Record low",
+          "lowest": "$939 (this deal, 9 Nov 2026); previous best $999 at Amazon AU (29 Sep 2026)",
+          "price_source": "OzBargain deal history",
+          "verified": "verified",
+          "reviews": "Too new for reviews",
+          "delivery": "Free delivery with old-vacuum removal. Stock is in NSW first; other states expected later this week",
+          "status": "new",
+          "previously_posted": "",
+          "stretch": false,
+          "why": "Lowest price on record for a mop + self-empty model, well under the $1,200 guide. The product page showed $2,199 in one check, so confirm $939 in the cart.",
+          "ends": "2 Dec",
+          "links": [
+            {
+              "label": "Appliances Online",
+              "url": "https://www.appliancesonline.com.au/product/roborock-qrevo-edge-2-robot-vacuum-cleaner-rr-qe252-03-blk/"
+            },
+            {
+              "label": "OzBargain",
+              "url": "https://www.ozbargain.com.au/node/982261"
+            }
+          ],
+          "image": ""
+        },
+        {
+          "item": "MOVA S70 Pro Roller robot vacuum + mop, self-empty dock",
+          "category": "Robot vacuums",
+          "retailer": "JB Hi-Fi",
+          "price": "$986",
+          "usual": "~$1,097+ (previous low)",
+          "saving": "About 10% below the previous record low",
+          "lowest": "Previous low $1,097 (PriceHipster, quoted on OzBargain)",
+          "price_source": "PriceHipster via OzBargain",
+          "verified": "verified",
+          "reviews": "4.67/5 at JB Hi-Fi (review count not shown)",
+          "delivery": "JB delivery or click & collect at an Adelaide store; The Good Guys reportedly price-match",
+          "status": "new",
+          "previously_posted": "",
+          "stretch": false,
+          "why": "New record low for a roller-mop model under the guide. JB's 'was $2,299' is inflated; judge it on the record low, not the 'was'.",
+          "ends": "2 Dec",
+          "links": [
+            {
+              "label": "JB Hi-Fi",
+              "url": "https://www.jbhifi.com.au/products/mova-s70-pro-roller-wet-and-dry-vacuum"
+            }
+          ],
+          "image": ""
+        },
+        {
+          "item": "Roborock Qrevo C Pro robot vacuum + mop",
+          "category": "Robot vacuums",
+          "retailer": "Costco (members only)",
+          "price": "$599.99 delivered",
+          "usual": "n/a",
+          "saving": "n/a",
+          "lowest": "Not found",
+          "price_source": "OzBargain (no history)",
+          "verified": "unverified",
+          "reviews": "530+ OzBargain votes",
+          "delivery": "Costco delivery; membership needed",
+          "status": "new",
+          "previously_posted": "",
+          "stretch": false,
+          "why": "Cheapest mop + dock option today. Check the dock self-empties before buying.",
+          "ends": "30 Nov",
+          "links": [
+            {
+              "label": "OzBargain",
+              "url": "https://www.ozbargain.com.au/node/982202"
+            }
+          ],
+          "image": ""
+        }
+      ]
+    },
+    {
+      "name": "Lawn mowers",
+      "advice": "Buy now if the local store has stock.",
+      "deals": [
+        {
+          "item": "Ozito PXC 36V (2×18V) 41cm brushless mower kit PBMK-4041",
+          "category": "Lawn mowers",
+          "retailer": "Bunnings",
+          "price": "$229",
+          "usual": "$299",
+          "saving": "23% off",
+          "lowest": "$229 (this promo, since 27 Sep 2026)",
+          "price_source": "OzBargain + Bunnings",
+          "verified": "verified",
+          "reviews": "2,470+ OzBargain votes; main complaint: patchy stock",
+          "delivery": "Delivery or click & collect in Adelaide; stock varies by store",
+          "status": "price unchanged",
+          "previously_posted": "Fri 30 Oct 2026",
+          "stretch": false,
+          "why": "Includes 2 batteries and a charger; batteries fit all Ozito PXC 18V tools. 41cm is just over the 33–40cm target. Bunnings' page couldn't be checked today, so check item 1108457.",
+          "ends": "Not stated",
+          "links": [
+            {
+              "label": "Bunnings",
+              "url": "https://www.bunnings.com.au/ozito-pxc-36v-2x18v-410mm-brushless-lawn-mower-4-0ah-kit-pbmk-4041_p1108457"
+            },
+            {
+              "label": "Stock checker",
+              "url": "https://bunnings.youinstock.com.au/search/1108457/"
+            }
+          ],
+          "image": ""
+        }
+      ]
+    },
+    {
+      "name": "Heat pump dryers",
+      "advice": "Buy now: the F&P is below its previous record low.",
+      "deals": [
+        {
+          "item": "Fisher & Paykel DH8060P3 8kg heat pump dryer (7-star energy)",
+          "category": "Heat pump dryers",
+          "retailer": "JB Hi-Fi",
+          "price": "$844",
+          "usual": "$991–$1,099 elsewhere",
+          "saving": "About 15–23% below other current/past prices",
+          "lowest": "Previous lows $999 (Harvey Norman, Jun 2023) and $1,099 (JB, Jun 2025); $844 beats both",
+          "price_source": "OzBargain deal history + Appliances Online current price",
+          "verified": "verified",
+          "reviews": "4.7/5 from 339 (Appliances Online); main complaint: water tank needs frequent emptying",
+          "delivery": "Bulky: check JB delivery cost to Adelaide at checkout, or collect from an Adelaide JB store",
+          "status": "new",
+          "previously_posted": "",
+          "stretch": false,
+          "why": "7-star energy rating, 8kg, below the $1,000 guide and below its previous record low.",
+          "ends": "Not stated",
+          "links": [
+            {
+              "label": "JB Hi-Fi",
+              "url": "https://www.jbhifi.com.au/products/fisher-paykel-dh8060p3-8kg-heat-pump-dryer-white"
+            }
+          ],
+          "image": ""
+        },
+        {
+          "item": "Haier HDHP90NW1 9kg heat pump dryer (9-star energy)",
+          "category": "Heat pump dryers",
+          "retailer": "Appliances Online",
+          "price": "$1,065",
+          "usual": "RRP $1,299",
+          "saving": "18% off RRP",
+          "lowest": "Not found",
+          "price_source": "Appliances Online only",
+          "verified": "unverified",
+          "reviews": "4.9/5 from 84; no common complaint",
+          "delivery": "Bulky: free delivery and removal, depends on postcode; check for Adelaide",
+          "status": "new",
+          "previously_posted": "",
+          "stretch": false,
+          "why": "Top 9-star efficiency, just over the $1,000 guide.",
+          "ends": "Not stated",
+          "links": [
+            {
+              "label": "Appliances Online",
+              "url": "https://www.appliancesonline.com.au/product/haier-500-series-9kg-heat-pump-dryer-hdhp90nw1"
+            }
+          ],
+          "image": ""
+        }
+      ]
+    },
+    {
+      "name": "Kettle and toaster packs",
+      "advice": "Wait: nothing meets the bar today.",
+      "deals": [],
+      "notes_title": "Prices to watch",
+      "notes": [
+        "Breville Breakfast Pack LKT640: $135.96 at Myer (one-day offer); it has been $99–$119.96. Watch for ~$120."
+      ]
+    },
+    {
+      "name": "Outdoor dining settings",
+      "advice": "Wait: nothing meets the bar today.",
+      "deals": [],
+      "notes_title": "Prices to watch",
+      "notes": [
+        "IKEA VÄRMANSÖ table + 6 chairs (aluminium, 224×93cm, seats 6–8): $1,259.10 with 10% off to 30 Nov. Needs 2 extra chairs for 8 seats. Bulky."
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "label": "Price checks",
+      "text": "PriceHipster, CamelCamelCamel, Bunnings and Amazon AU pages couldn't be read today, so price history comes mainly from OzBargain, Staticice and retailer pages. Most retailers didn't quote Adelaide delivery costs; check at checkout. Prices checked Tue 10 Nov."
+    }
+  ],
+  "sales": [
+    {
+      "title": "Click Frenzy",
+      "text": "Expected around 10–12 Nov, but no sale was seen on OzBargain today.",
       "starts": "",
-      "ends": "2026-11-08",
-      "confirmed": true,
-      "links": []
-    },
-    {
-      "title": "ShopBack mystery cashback",
-      "text": "OzBargain commenters expect a \"mystery cashback\" event. Not confirmed.",
-      "starts": "2026-11-09",
-      "ends": "2026-11-09",
+      "ends": "",
       "confirmed": false,
       "links": []
     },
@@ -233,10 +652,62 @@
       "links": []
     },
     {
-      "title": "Early Black Friday",
-      "text": "Live now at The Good Guys, 99 Bikes and others. Black Friday itself is 27 Nov.",
+      "title": "Steelcase sale",
+      "text": "25–35% off office chairs.",
       "starts": "",
-      "ends": "",
+      "ends": "2026-11-15",
+      "confirmed": true,
+      "links": [
+        {
+          "label": "OzBargain history",
+          "url": "https://www.ozbargain.com.au/product/steelcase-series-1"
+        }
+      ]
+    },
+    {
+      "title": "Mwave spend & save",
+      "text": "$20 off $200, $60 off $500, $120 off $900. Useful for monitors.",
+      "starts": "",
+      "ends": "2026-11-22",
+      "confirmed": true,
+      "links": [
+        {
+          "label": "OzBargain",
+          "url": "https://www.ozbargain.com.au/node/982221"
+        }
+      ]
+    },
+    {
+      "title": "Woolworths gift card points",
+      "text": "20x Everyday Rewards points on gift cards, in store.",
+      "starts": "2026-11-11",
+      "ends": "2026-11-17",
+      "confirmed": true,
+      "links": [
+        {
+          "label": "OzBargain",
+          "url": "https://www.ozbargain.com.au/node/981773"
+        }
+      ]
+    },
+    {
+      "title": "IKEA 10% off",
+      "text": "Almost everything, including rugs and outdoor furniture.",
+      "starts": "",
+      "ends": "2026-11-30",
+      "confirmed": true,
+      "links": [
+        {
+          "label": "OzBargain",
+          "url": "https://www.ozbargain.com.au/node/981671"
+        }
+      ]
+    },
+    {
+      "title": "Black Friday",
+      "text": "Main event Fri 27 Nov; Cyber Monday Mon 30 Nov. Amazon AU's sale is expected from ~18 Nov (unconfirmed).",
+      "starts": "2026-11-27",
+      "ends": "2026-11-30",
       "confirmed": true,
       "links": []
     }
